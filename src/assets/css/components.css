@@ -1,11 +1,14 @@
 .btn-brand {
-  background: linear-gradient(90deg, var(--brand-500) 0%, var(--brand-500) 50%, var(--brand-600) 100%);
+  background: #906E49;
   background-size: 200% 100%;
   background-position: 0 0;
   color: #fff;
+  font-size: 14px;
+  font-weight: 500;
   border: none;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  border-radius: 0px;
   transition: background-position 0.8s ease, transform 0.4s ease, box-shadow 0.4s ease;
 }
 
@@ -13,8 +16,8 @@
 .btn-brand:focus {
   background-position: 100% 0;
   color: #fff;
+  background: #000;
   transform: translateY(-2px);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
 }
 
 .btn-outline-brand {
@@ -223,7 +226,7 @@
 .deliverables {
   position: relative;
   display: block;
-  background: url('../images/what-we-deliver.jpg');
+  background: url('/public/assets/what-we-deliver.jpg');
   background-attachment: fixed;
   background-size: cover;
   background-position: center top;
