@@ -201,3 +201,23 @@
     align-items: center;
     font-size: 20px;
 }
+.teams-box{
+  border: 1px solid #F1F1F1 !important;
+  padding: 10px;
+}
+.teams-box h5{
+  font-size: 30px;
+  font-weight: 700;
+}
+.teams-box p{
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--active-hover-color);
+}
+.sec-title h2 {
+    display: block;
+    font-size: 45px;
+    line-height: 54px;
+    font-weight: 600;
+    color: var(--nav-link-color);
+}

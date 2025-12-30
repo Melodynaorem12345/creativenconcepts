@@ -10,10 +10,13 @@ const AboutSubPage = () => {
     return (
       <div>
         <PageHeader
-          title="Who We Are"
-          subtitle="Our Identity"
-          description="Merging architectural precision with human-centric design to redefine the spaces you inhabit."
-        />
+        title="Who We Are"
+        image="/public/assets/contact-bg.jpg"
+        imagePosition="center center"
+        overlay={true}
+        showSubtitle={false}
+        showDescription={false}
+      />
         <section className="section-padding bg-white">
           <div className="container">
             <div className="row align-items-center g-4 mb-5">
@@ -67,12 +70,25 @@ const AboutSubPage = () => {
     return (
       <div>
         <PageHeader
-          title="Our Team"
-          subtitle="The Visionaries"
-          description="A collective of creative minds dedicated to architectural excellence."
-        />
-        <section className="section-padding bg-white">
+        title="Our Team"
+        image="/public/assets/contact-bg.jpg"
+        imagePosition="center center"
+        overlay={true}
+        showSubtitle={false}
+        showDescription={false}
+      />
+        <section className="section-padding bg-white team-section">
           <div className="container">
+               <motion.div
+                className="sec-title d-flex flex-column justify-content-center align-items-center mb-5"
+                initial={{ opacity: 0, x: 80 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+              >
+                <span className="section-heading mb-3 d-block">Certified professionals</span>
+                <h2>Our Dedicated Team</h2>
+              </motion.div>
             <div className="row g-4">
               {team.map((member, i) => (
                 <div className="col-12 col-md-6 col-lg-4" key={member.name}>
@@ -81,14 +97,14 @@ const AboutSubPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.05 }}
-                    className="card h-100 border-0 shadow-soft"
+                    className="card h-100 teams-box"
                   >
-                    <div className="ratio ratio-3x4 overflow-hidden">
+                    <div className="overflow-hidden">
                       <img src={member.img} className="cover-image" alt={member.name} />
                     </div>
-                    <div className="card-body">
+                    <div className="card-body text-center">
                       <h5 className="card-title font-serif text-brand mb-1">{member.name}</h5>
-                      <p className="small text-uppercase text-brand-muted mb-0">{member.role}</p>
+                      <p className="mb-0">{member.role}</p>
                     </div>
                   </motion.div>
                 </div>
