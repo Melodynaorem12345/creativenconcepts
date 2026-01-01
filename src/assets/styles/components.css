@@ -226,7 +226,7 @@
 .deliverables {
   position: relative;
   display: block;
-  background: url('/public/assets/what-we-deliver.jpg');
+  background: url('../images/what-we-deliver.jpg');
   background-attachment: fixed;
   background-size: cover;
   background-position: center top;

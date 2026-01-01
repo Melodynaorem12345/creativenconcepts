@@ -1,14 +1,14 @@
 
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import MainLayout from '../layouts/MainLayout';
-import Home from '../pages/Home';
-import AboutSubPage from '../pages/About';
-import ServiceDetail from '../pages/ServiceDetail';
-import ModularJourney from '../pages/ModularJourney';
-import Projects from '../pages/Projects';
-import Testimonials from '../pages/Testimonials';
-import Contact from '../pages/Contact';
+import MainLayout from '@app/layout/MainLayout';
+import Home from '@features/home/Home';
+import AboutSubPage from '@features/about/About';
+import ServiceDetail from '@features/services/ServiceDetail';
+import ModularJourney from '@features/journey/ModularJourney';
+import Projects from '@features/projects/Projects';
+import Testimonials from '@features/testimonials/Testimonials';
+import Contact from '@features/contact/Contact';
 
 const AppRouter = () => {
   return (

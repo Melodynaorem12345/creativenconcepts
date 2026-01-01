@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Hero from '../components/home/Hero';
-import ServicesPreview from '../components/home/ServicesPreview';
-import FeaturedProjects from '../components/home/FeaturedProjects';
-import JourneyPreview from '../components/home/JourneyPreview';
-import ContactCTA from '../components/common/ContactCTA';
-import Deliverables from '../components/home/Deliverables';
+import Hero from './components/Hero';
+import ServicesPreview from './components/ServicesPreview';
+import FeaturedProjects from './components/FeaturedProjects';
+import JourneyPreview from './components/JourneyPreview';
+import Deliverables from './components/Deliverables';
+import ContactCTA from '@shared/components/ContactCTA';
 
 const Home = () => {
   return (

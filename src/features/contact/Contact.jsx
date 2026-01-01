@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import PageHeader from '../components/common/PageHeader';
 import { FiMapPin, FiMail, FiPhone } from 'react-icons/fi';
+import PageHeader from '@shared/components/PageHeader';
+import contactBg from '@assets/images/contact-bg.jpg';
+import contactHero from '@assets/images/contact-us-image.jpg';
 
 const Contact = () => {
     const infoItems = [
@@ -29,7 +31,7 @@ const Contact = () => {
     <div className="bg-white">
       <PageHeader
         title="Contact Us"
-        image="/public/assets/contact-bg.jpg"
+        image={contactBg}
         imagePosition="center center"
         overlay={true}
         showSubtitle={false}
@@ -48,7 +50,7 @@ const Contact = () => {
                 aria-hidden="true"
               >
                 <img
-                  src="/public/assets/contact-us-image.jpg"
+                  src={contactHero}
                   alt="Contact us image"
                   className="w-100 h-100"
                   style={{ objectFit: 'cover', display: 'block' }}

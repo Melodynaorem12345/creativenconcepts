@@ -1,8 +1,8 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { services } from '../../data/services';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { services } from '@shared/data/services';
 
 const ServicesPreview = () => {
   const sectionRef = useRef(null);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { journeySteps } from '../../data/journey';
+import { journeySteps } from '@shared/data/journey';
 
 const JourneyPreview = () => {
   return (

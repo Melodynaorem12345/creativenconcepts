@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
-import { services } from '../data/services';
 import { motion } from 'framer-motion';
+import { services } from '@shared/data/services';
 
 const ServiceDetail = ({ fixedId }) => {
   const { serviceId: paramId } = useParams();

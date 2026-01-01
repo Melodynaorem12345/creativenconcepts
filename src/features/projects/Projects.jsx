@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projects } from '../data/projects';
-import Lightbox from '../components/gallery/Lightbox';
-import ProjectCard from '../components/gallery/ProjectCard';
-import PageHeader from '../components/common/PageHeader';
+import { projects } from '@shared/data/projects';
+import Lightbox from './components/Lightbox';
+import ProjectCard from './components/ProjectCard';
+import PageHeader from '@shared/components/PageHeader';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
