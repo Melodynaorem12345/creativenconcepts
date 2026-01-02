@@ -198,6 +198,55 @@ const BeforeAfterSlider = ({ beforeSrc, afterSrc }) => {
   );
 };
 
+const OfficeSection = ({
+  imgSrc = 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80',
+  title = 'New Delhi',
+  eyebrow = 'Our Office',
+  address = '📍 No. 12, Design Avenue, Indiranagar, Bangalore, 560038',
+  mapsQuery = 'South+Extension+New+Delhi'
+}) => {
+  return (
+    <section className="office-section">
+      <div className="container">
+        <div className="office-image-wrap">
+          <motion.img
+            src={imgSrc}
+            alt="Office Location"
+            className="office-hero"
+            initial={{ scale: 1.05 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.4, ease: 'easeOut' }}
+          />
+
+          <motion.div
+            className="office-card"
+            initial={{ y: 40, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut', delay: 0.35 }}
+          >
+            <div className="office-eyebrow">{eyebrow}</div>
+
+            <h2 className="office-title">{title}</h2>
+
+            <p className="office-address" style={{ whiteSpace: 'pre-line' }}>
+              {address}
+            </p>
+
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+              target="_blank"
+              rel="noreferrer"
+              className="office-btn"
+            >
+              Get Directions <span>→</span>
+            </a>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const AboutSubPage = () => {
   const { section } = useParams();
 
@@ -293,9 +342,9 @@ const AboutSubPage = () => {
 
         <section className="section-padding why-choose-light">
           <div className="container">
-            <div className="text-center mb-5">
-              <span className="section-heading d-block text-brand mb-2">Why Choose Us</span>
-              <h2 className="display-6 font-serif text-brand mb-3">Crafted confidence, transparent delivery.</h2>
+            <div className="d-flex flex-column gap-3 justify-content-center align-items-center mb-5">
+              <span className="section-heading d-block text-brand">Why Choose Us</span>
+              <h2 className="display-5 fw-semibold font-serif text-brand mb-0">Crafted confidence, transparent delivery.</h2>
               <p className="text-brand-muted mb-0">Warranty-backed work, clear pricing, and a team that owns every detail.</p>
             </div>
             <div className="why-grid">
@@ -399,40 +448,24 @@ const AboutSubPage = () => {
     return (
       <div>
         <PageHeader
-          title="Our Office"
-          subtitle="Our Hub"
-          description="Where ideas transform into architectural reality."
+        title="Our Office"
+        image={contactBg}
+        imagePosition="center center"
+        overlay={true}
+        showSubtitle={false}
+        showDescription={false}
+      />
+
+        {/* Inserted OfficeSection that mirrors your HTML design & animations */}
+        <OfficeSection
+          imgSrc="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80"
+          title="New Delhi"
+          eyebrow="Our Office"
+          address={`📍 No. 12, Design Avenue, Indiranagar, Bangalore, 560038`}
+          mapsQuery="South+Extension+New+Delhi"
         />
-        <section className="section-padding bg-white">
-          <div className="container">
-            <div className="row align-items-center g-4">
-              <div className="col-lg-6">
-                <div className="ratio ratio-4x3 overflow-hidden shadow-soft">
-                  <img
-                    src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&q=80&w=1200"
-                    className="cover-image"
-                    alt="Office"
-                  />
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <h2 className="display-6 font-serif text-brand mb-3">A Studio of Possibilities.</h2>
-                <p className="text-brand-muted">
-                  Our design studio is equipped with collaborative zones, material libraries, and immersive visualization suites.
-                </p>
-                <div className="row g-3 mt-3">
-                  {['Material Library', 'Experience Center', 'Client Lounge'].map((item) => (
-                    <div className="col-12 col-md-4" key={item}>
-                      <div className="p-3 bg-brand-light h-100 text-center">
-                        <p className="small text-uppercase mb-0 text-brand">{item}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+
+        {/* optionally keep other about sections below */}
       </div>
     );
   }

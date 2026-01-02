@@ -6,6 +6,7 @@ import ServicesPreview from './components/ServicesPreview';
 import FeaturedProjects from './components/FeaturedProjects';
 import JourneyPreview from './components/JourneyPreview';
 import Deliverables from './components/Deliverables';
+import Brands from './components/Brands';
 import ContactCTA from '@shared/components/ContactCTA';
 
 const Home = () => {
@@ -58,6 +59,7 @@ const Home = () => {
 
       <ServicesPreview />
       <Deliverables />
+      <Brands />
       <JourneyPreview />
       <FeaturedProjects />
       <ContactCTA />

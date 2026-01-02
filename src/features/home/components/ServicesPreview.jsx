@@ -55,7 +55,7 @@ const ServicesPreview = () => {
 
         <div className="what-we-offer__header text-center">
           <span className="section-heading d-block mb-3">What We Offer</span>
-          <h2 className="architecture-title mb-3">
+          <h2 className="display-5 font-serif fw-semibold mb-3">
             Architectural Design Solutions
           </h2>
           <p className="architecture-description mx-auto mb-4">
