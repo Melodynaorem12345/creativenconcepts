@@ -9,45 +9,63 @@ const ServicesPreview = () => {
   const cardRefs = useRef([]);
 
   useLayoutEffect(() => {
-  gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger);
 
-  const ctx = gsap.context(() => {
-    cardRefs.current.forEach((card) => {
-      if (!card) return;
+    const ctx = gsap.context(() => {
+      cardRefs.current.forEach((card) => {
+        if (!card) return;
 
-      gsap.set(card, {
-        transformOrigin: 'center bottom',
-        transformPerspective:500,
-        willChange: 'transform'
-      });
+        gsap.set(card, {
+          transformOrigin: 'center bottom',
+          transformPerspective: 500,
+          willChange: 'transform'
+        });
 
-      gsap.fromTo(
-        card,
-        {
-          rotateX: -26,
-          z: -260,
-          y: 40
-        },
-        {
-          rotateX: 0,
-          z: 0,
-          y: -20,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 96%',
-            end: 'top 34%',
-            scrub: 1.1,
-            invalidateOnRefresh: true
+        gsap.fromTo(
+          card,
+          {
+            rotateX: -26,
+            z: -260,
+            y: 40
+          },
+          {
+            rotateX: 0,
+            z: 0,
+            y: -20,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 96%',
+              end: 'top 34%',
+              scrub: 1.1,
+              invalidateOnRefresh: true
+            }
           }
-        }
-      );
-    });
-  }, sectionRef);
+        );
+      });
+    }, sectionRef);
 
-  ScrollTrigger.refresh();
-  return () => ctx.revert();
-}, []);
+    ScrollTrigger.refresh();
+    return () => ctx.revert();
+  }, []);
+
+  const navServiceOrder = [
+    'kitchen',
+    'living-room',
+    'crockery-unit',
+    'foyer',
+    'tv-console',
+    'pooja-room',
+    'vanity',
+    'wardrobe',
+    'commercial-projects',
+    'retail'
+  ];
+
+  const featuredServices = navServiceOrder
+    .map((id) => services.find((s) => s.id === id))
+    .filter(Boolean)
+    .slice(0, 6);
 
   return (
     <section ref={sectionRef} className="section-padding bg-brand-light what-we-offer">
@@ -65,14 +83,14 @@ const ServicesPreview = () => {
         </div>
 
         <div className="what-we-offer__grid">
-          {services.slice(0, 4).map((service, index) => (
+          {featuredServices.map((service, index) => (
             <div className="arch-offer-slot" key={service.id}>
               <article
                 className="arch-offer-card"
                 ref={(el) => (cardRefs.current[index] = el)}
               >
                 <div className="arch-offer-card__image">
-                  <img src={service.bannerImage} alt={service.title} />
+                  <img src={service.bannerImage} alt={service.title} loading="lazy" />
                 </div>
 
               <div className="arch-offer-card__caption">

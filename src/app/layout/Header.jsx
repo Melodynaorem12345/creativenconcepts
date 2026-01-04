@@ -5,32 +5,35 @@ import { FaChevronRight, FaChevronDown } from 'react-icons/fa';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeService, setActiveService] = useState(null);
-  const [megaTop, setMegaTop] = useState(0);
+  const [showAboutMobile, setShowAboutMobile] = useState(false);
+  const [showServicesMobile, setShowServicesMobile] = useState(false);
+  const [expandedServiceKey, setExpandedServiceKey] = useState(null);
+  const [isLgUp, setIsLgUp] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1200 : true);
+  const [desktopOpen, setDesktopOpen] = useState(null);
   const location = useLocation();
 
   const serviceGroups = [
     {
       key: 'Kitchen',
       items: [
-        { label: 'Modular Kitchen', path: '/services/kitchen' },
-        { label: 'Crockery Unit', path: '/services/living-room/crockery-unit' },
-        { label: 'Foyer', path: '/services/living-room/foyer' }
+        { label: 'Modular Kitchen', slug: 'kitchen' },
+        { label: 'Crockery Unit', slug: 'crockery-unit' },
+        { label: 'Foyer', slug: 'foyer' }
       ]
     },
     {
       key: 'Wardrobe',
       items: [
-        { label: 'Custom Wardrobes', path: '/services/wardrobe' },
-        { label: 'Vanity', path: '/services/living-room/vanity' }
+        { label: 'Custom Wardrobes', slug: 'wardrobe' },
+        { label: 'Vanity', slug: 'vanity' }
       ]
     },
     {
       key: 'Living Room',
       items: [
-        { label: 'Living Room', path: '/services/living-room' },
-        { label: 'TV Console', path: '/services/living-room/tv-console' },
-        { label: 'Pooja Room', path: '/services/living-room/pooja-room' }
+        { label: 'Living Room', slug: 'living-room' },
+        { label: 'TV Console', slug: 'tv-console' },
+        { label: 'Pooja Room', slug: 'pooja-room' }
       ]
     }
   ];
@@ -44,8 +47,30 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsLgUp(window.innerWidth >= 1200);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     setIsOpen(false);
+    setShowAboutMobile(false);
+    setShowServicesMobile(false);
+    setExpandedServiceKey(null);
+    setDesktopOpen(null);
   }, [location]);
+
+  useEffect(() => {
+    // lock body scroll when mobile nav is open
+    if (isOpen && !isLgUp) {
+      document.body.classList.add('no-scroll');
+    } else {
+      document.body.classList.remove('no-scroll');
+    }
+    return () => document.body.classList.remove('no-scroll');
+  }, [isOpen, isLgUp]);
 
   const isPathActive = (path) => {
     if (path === '/') {
@@ -54,10 +79,39 @@ const Header = () => {
     return location.pathname.startsWith(path);
   };
 
-  const closeMobileMenu = () => setIsOpen(false);
+  const closeMobileMenu = () => {
+    setIsOpen(false);
+    setShowAboutMobile(false);
+    setShowServicesMobile(false);
+    setExpandedServiceKey(null);
+    setDesktopOpen(null);
+  };
+  const handleDesktopOpen = (key) => {
+    if (!isLgUp) return;
+    setDesktopOpen(key);
+  };
+  const handleDesktopClose = () => {
+    if (!isLgUp) return;
+    setDesktopOpen(null);
+  };
+  const handleAboutToggle = () => {
+    if (isLgUp) return;
+    setShowAboutMobile((prev) => !prev);
+  };
+
+  const handleServicesToggle = () => {
+    if (isLgUp) return;
+    setShowServicesMobile((prev) => !prev);
+  };
+
+  const toggleServiceGroup = (key) => {
+    if (isLgUp) return;
+    setExpandedServiceKey((prev) => (prev === key ? null : key));
+  };
+
   return (
     <header>
-      <nav className={`navbar navbar-expand-lg navbar-light fixed-top bg-white header-nav ${scrolled ? 'shadow-sm' : ''}`}>
+      <nav className={`navbar navbar-expand-xl navbar-light fixed-top bg-white header-nav ${scrolled ? 'shadow-sm' : ''}`}>
         <div className="container d-flex align-items-center">
           <NavLink className="navbar-brand fw-bold text-brand" to="/">
             CreativeNconcepts
@@ -65,64 +119,97 @@ const Header = () => {
           <button
             className="navbar-toggler"
             type="button"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+              setIsOpen((prev) => {
+                const next = !prev;
+                if (!next) {
+                  setShowAboutMobile(false);
+                  setShowServicesMobile(false);
+                  setExpandedServiceKey(null);
+                }
+                return next;
+              });
+            }}
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon" />
           </button>
 
           <div className={`collapse navbar-collapse flex-lg-grow-1 ${isOpen ? 'show' : ''}`}>
-            <div className="navbar-links-cta d-flex flex-column flex-lg-row align-items-lg-center w-100">
+            <div className="navbar-links-cta d-flex flex-column flex-xl-row align-items-lg-center w-100">
               <ul className="navbar-nav align-items-lg-center gap-lg-2 text-uppercase fw-semibold small mx-lg-auto">
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/" end onClick={closeMobileMenu}>
                     Home
                   </NavLink>
                 </li>
-                <li className="nav-item dropdown about-dropdown">
-                  <button className={`nav-link dropdown-toggle border-0 bg-transparent ${isPathActive('/about') ? 'active' : ''}`} type="button">
+                <li
+                  className="nav-item dropdown about-dropdown"
+                  onMouseEnter={() => handleDesktopOpen('about')}
+                  onMouseLeave={handleDesktopClose}
+                >
+                  <button
+                    className={`nav-link dropdown-toggle border-0 bg-transparent ${isPathActive('/about') ? 'active' : ''}`}
+                    type="button"
+                    onClick={handleAboutToggle}
+                    aria-expanded={showAboutMobile}
+                  >
                     <span className="d-inline-flex align-items-center gap-1">
                       About
                       <FaChevronDown className="nav-caret" />
                     </span>
                   </button>
-                  <ul className="dropdown-menu">
+                  <ul className={`dropdown-menu ${showAboutMobile && !isLgUp ? 'show d-block position-static mt-2' : ''} ${isLgUp && desktopOpen === 'about' ? 'desktop-open show' : ''}`}>
                     <li><NavLink className="dropdown-item" to="/about/who-we-are" onClick={closeMobileMenu}>Who We Are</NavLink></li>
                     <li><NavLink className="dropdown-item" to="/about/our-team" onClick={closeMobileMenu}>Our Team</NavLink></li>
                     <li><NavLink className="dropdown-item" to="/about/our-office" onClick={closeMobileMenu}>Our Office</NavLink></li>
                   </ul>
                 </li>
-                <li className="nav-item dropdown services-dropdown">
-                  <button className={`nav-link dropdown-toggle border-0 bg-transparent services-toggle ${isPathActive('/services') ? 'active' : ''}`} type="button">
+                <li
+                  className="nav-item dropdown services-dropdown"
+                  onMouseEnter={() => handleDesktopOpen('services')}
+                  onMouseLeave={handleDesktopClose}
+                >
+                  <button
+                    className={`nav-link dropdown-toggle border-0 bg-transparent services-toggle ${isPathActive('/services') ? 'active' : ''}`}
+                    type="button"
+                    onClick={handleServicesToggle}
+                    aria-expanded={showServicesMobile}
+                  >
                     <span className="d-inline-flex align-items-center gap-1">
                       Services
                       <FaChevronDown className="nav-caret" />
                     </span>
                   </button>
-                  <div className="dropdown-menu services-menu">
+                  <div className={`dropdown-menu services-menu ${showServicesMobile && !isLgUp ? 'show d-block position-static mt-2 w-100' : ''} ${isLgUp && desktopOpen === 'services' ? 'desktop-open show' : ''}`}>
                     <ul className="services-categories list-unstyled mb-0">
-                      {serviceGroups.map((group) => (
-                        <li key={group.key} className="services-category">
-                          <button
-                            type="button"
-                            className="services-category-btn"
-                          >
-                            {group.key}
-                            <FaChevronRight className="services-category-icon" />
-                          </button>
-                          <div className="services-mega-panel">
-                            <ul className="services-items list-unstyled mb-0">
-                              {group.items.map((sub) => (
-                                <li key={sub.label}>
-                                  <NavLink className="services-item-link" to={sub.path} onClick={closeMobileMenu}>
-                                    {sub.label}
-                                  </NavLink>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </li>
-                      ))}
+                      {serviceGroups.map((group) => {
+                        const isExpanded = !isLgUp && expandedServiceKey === group.key;
+                        return (
+                          <li key={group.key} className="services-category">
+                            <button
+                              type="button"
+                              className="services-category-btn d-flex justify-content-between align-items-center w-100"
+                              onClick={() => toggleServiceGroup(group.key)}
+                              aria-expanded={isExpanded}
+                            >
+                              {group.key}
+                              <FaChevronRight className="services-category-icon" />
+                            </button>
+                            <div className={`services-mega-panel ${isExpanded ? 'show-mobile d-block position-static mt-2' : ''}`}>
+                              <ul className="services-items list-unstyled mb-0">
+                                {group.items.map((sub) => (
+                                  <li key={sub.label}>
+                                    <NavLink className="services-item-link" to={`/services/${sub.slug}`} onClick={closeMobileMenu}>
+                                      {sub.label}
+                                    </NavLink>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </li>

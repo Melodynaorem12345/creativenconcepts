@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageHeader from '@shared/components/PageHeader';
-import contactBg from '@assets/images/contact-bg.jpg';
+import contactBg from '@assets/images/banners/contact-bg.jpg';
 
 const CountUp = ({ end, suffix = '', duration = 1200 }) => {
   const [value, setValue] = useState(0);
@@ -209,10 +209,12 @@ const OfficeSection = ({
     <section className="office-section">
       <div className="container">
         <div className="office-image-wrap">
+          <div className="office-overlay" aria-hidden="true" />
           <motion.img
             src={imgSrc}
             alt="Office Location"
             className="office-hero"
+            loading="lazy"
             initial={{ scale: 1.05 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1.4, ease: 'easeOut' }}

@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { testimonials } from '@shared/data/testimonials';
 import PageHeader from '@shared/components/PageHeader';
-import contactBg from '@assets/images/contact-bg.jpg';
+import contactBg from '@assets/images/banners/contact-bg.jpg';
 
 const Testimonials = () => {
   return (

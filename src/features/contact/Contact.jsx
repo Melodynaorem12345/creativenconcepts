@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMapPin, FiMail, FiPhone } from 'react-icons/fi';
 import PageHeader from '@shared/components/PageHeader';
-import contactBg from '@assets/images/contact-bg.jpg';
-import contactHero from '@assets/images/contact-us-image.jpg';
+import contactBg from '@assets/images/banners/contact-bg.jpg';
+import contactHero from '@assets/images/banners/contact-us-image.jpg';
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      service: '',
+      message: ''
+    });
+    const [errors, setErrors] = useState({});
+    const [submitted, setSubmitted] = useState(false);
+
     const infoItems = [
       { key: 'location', label: 'Our Studio', val: 'No. 12, Design Avenue, Indiranagar, Bangalore, 560038', Icon: FiMapPin },
       { key: 'email', label: 'Email Us', val: 'hello@creativenconcepts.com', Icon: FiMail },
@@ -25,6 +34,49 @@ const Contact = () => {
     const detailsVariant = {
       hidden: { opacity: 0, y: 24 },
       visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut', delay: 0.35 } }
+    };
+
+    const validate = () => {
+      const nextErrors = {};
+      if (!formData.name.trim()) {
+        nextErrors.name = 'Please enter your full name.';
+      }
+      if (!formData.email.trim()) {
+        nextErrors.email = 'Email is required.';
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        nextErrors.email = 'Enter a valid email address.';
+      }
+      if (!formData.service) {
+        nextErrors.service = 'Select the service you need.';
+      }
+      if (!formData.message.trim()) {
+        nextErrors.message = 'Tell us about your project.';
+      } else if (formData.message.trim().length < 10) {
+        nextErrors.message = 'Please provide a few more details (min 10 characters).';
+      }
+      return nextErrors;
+    };
+
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({ ...prev, [name]: value }));
+      if (errors[name]) {
+        setErrors((prev) => {
+          const updated = { ...prev };
+          delete updated[name];
+          return updated;
+        });
+      }
+      if (submitted) setSubmitted(false);
+    };
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const validationErrors = validate();
+      setErrors(validationErrors);
+      if (Object.keys(validationErrors).length === 0) {
+        setSubmitted(true);
+      }
     };
 
   return (
@@ -73,32 +125,92 @@ const Contact = () => {
                 className="card border-0 flex-grow-1"
               >
                 <div className="card-body h-100 d-flex flex-column p-0">
-                  <form className="row g-3 mt-auto contact-form" onSubmit={(e) => e.preventDefault()} aria-label="Contact form">
+                  <form className="row g-3 mt-auto contact-form" onSubmit={handleSubmit} noValidate aria-label="Contact form">
                     <div className="col-md-6">
                       <label className="form-label small text-uppercase fw-semibold text-brand-muted">Name</label>
-                      <input type="text" className="form-control" placeholder="Full Name" />
+                      <input
+                        type="text"
+                        className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+                        placeholder="Full Name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        aria-invalid={Boolean(errors.name)}
+                        aria-describedby={errors.name ? 'contact-name-error' : undefined}
+                      />
+                      {errors.name && (
+                        <div id="contact-name-error" className="invalid-feedback d-block small">
+                          {errors.name}
+                        </div>
+                      )}
                     </div>
                     <div className="col-md-6">
                       <label className="form-label small text-uppercase fw-semibold text-brand-muted">Email</label>
-                      <input type="email" className="form-control" placeholder="email@address.com" />
+                      <input
+                        type="email"
+                        className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                        placeholder="email@address.com"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        aria-invalid={Boolean(errors.email)}
+                        aria-describedby={errors.email ? 'contact-email-error' : undefined}
+                      />
+                      {errors.email && (
+                        <div id="contact-email-error" className="invalid-feedback d-block small">
+                          {errors.email}
+                        </div>
+                      )}
                     </div>
                     <div className="col-12">
                       <label className="form-label small text-uppercase fw-semibold text-brand-muted">Service Required</label>
-                      <select className="form-select">
-                        <option>Residential Interior</option>
-                        <option>Commercial Space</option>
-                        <option>Modular Kitchen</option>
-                        <option>Architecture Service</option>
+                      <select
+                        className={`form-select ${errors.service ? 'is-invalid' : ''}`}
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        aria-invalid={Boolean(errors.service)}
+                        aria-describedby={errors.service ? 'contact-service-error' : undefined}
+                      >
+                        <option value="">Select a service</option>
+                        <option value="Residential Interior">Residential Interior</option>
+                        <option value="Commercial Space">Commercial Space</option>
+                        <option value="Modular Kitchen">Modular Kitchen</option>
+                        <option value="Architecture Service">Architecture Service</option>
                       </select>
+                      {errors.service && (
+                        <div id="contact-service-error" className="invalid-feedback d-block small">
+                          {errors.service}
+                        </div>
+                      )}
                     </div>
                     <div className="col-12">
                       <label className="form-label small text-uppercase fw-semibold text-brand-muted">Project Message</label>
-                      <textarea rows={4} className="form-control" placeholder="Tell us about your space..." />
+                      <textarea
+                        rows={4}
+                        className={`form-control ${errors.message ? 'is-invalid' : ''}`}
+                        placeholder="Tell us about your space..."
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        aria-invalid={Boolean(errors.message)}
+                        aria-describedby={errors.message ? 'contact-message-error' : undefined}
+                      />
+                      {errors.message && (
+                        <div id="contact-message-error" className="invalid-feedback d-block small">
+                          {errors.message}
+                        </div>
+                      )}
                     </div>
                     <div className="col-12">
                       <button type="submit" className="btn btn-brand w-100 py-3 text-uppercase">
                         Submit Request
                       </button>
+                      {submitted && (
+                        <div className="alert alert-success rounded-3 mt-3 mb-0 py-2 px-3 small" role="status">
+                          Thanks for reaching out. We’ll get back to you shortly.
+                        </div>
+                      )}
                     </div>
                   </form>
                 </div>

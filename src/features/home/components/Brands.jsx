@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 // ✅ Vite-safe absolute path
 const logos = Object.values(
   import.meta.glob(
-    '/src/assets/images/material-brands/*.{png,jpg,jpeg,svg}',
+    '/src/assets/images/brands/material-brands/*.{png,jpg,jpeg,svg}',
     {
       eager: true,
       import: 'default',
@@ -16,9 +16,6 @@ const logos = Object.values(
 }));
 
 const Brands = () => {
-  // 🔍 Debug safety
-  console.log('Loaded brand logos:', logos);
-
   if (!logos.length) return null;
 
   return (

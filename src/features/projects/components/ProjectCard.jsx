@@ -10,22 +10,22 @@ const ProjectCard = ({ project, onClick }) => {
       viewport={{ once: true }}
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.5 }}
-      className="card border-0 shadow-soft h-100 card-lift"
+      className="card border-0 shadow-soft h-100 card-lift project-card"
       role="button"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onClick?.()}
     >
-      <div className="position-relative overflow-hidden">
-        <img src={project.image} className="card-img-top cover-image" alt={project.title} />
-        <div className="position-absolute top-0 end-0 m-3 badge bg-light text-brand fw-semibold text-uppercase">
-          {project.category}
+      <div className="project-card__media">
+        <img
+          src={project.image}
+          className="card-img-top cover-image"
+          alt={project.title}
+          loading="lazy"
+        />
+        <div className="position-absolute top-0 end-0 m-2 small badge bg-light text-brand fw-semibold text-uppercase project-badge">
+          {project.subCategory || project.category}
         </div>
-      </div>
-      <div className="card-body d-flex justify-content-between align-items-start">
-        <div>
-          <h5 className="card-title font-serif text-brand mb-1">{project.title}</h5>
-          <p className="small text-uppercase text-muted mb-0">{project.location}</p>
-        </div>
-        <span className="text-brand-muted fst-italic">{project.year}</span>
       </div>
     </motion.div>
   );

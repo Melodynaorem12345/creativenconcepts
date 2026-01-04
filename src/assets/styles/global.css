@@ -15,7 +15,7 @@
   --nav-link-color:#121212;
   --active-hover-color: #906E49;
   --bs-nav-link-font-size: 14px;
-  --header-height: 85px;
+  --header-height: 82px;
 }
 
 * {
@@ -38,6 +38,10 @@ h1, h2, h3, h4, h5, h6,
 
 a, button, input, select, textarea {
   font-family: "Poppins", sans-serif;
+}
+
+.no-scroll {
+  overflow: hidden !important;
 }
 
 .text-brand {
@@ -91,5 +95,5 @@ a, button, input, select, textarea {
   background: var(--brand-600);
 }
 main {
-  padding-top: var(--header-height);
+  /* padding-top: var(--header-height); */
 }

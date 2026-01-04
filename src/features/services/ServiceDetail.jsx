@@ -23,26 +23,13 @@ const ServiceDetail = ({ fixedId }) => {
             alt={service.title}
           />
           <div className="position-absolute top-0 start-0 w-100 h-100 hero-overlay" />
-          <div className="position-absolute bottom-0 start-0 end-0 text-white pb-5">
+          <div className="position-absolute top-0 start-0 end-0 bottom-0 text-white d-flex align-items-center">
             <div className="container">
-              <span className="section-heading text-light d-block mb-2">{service.category}</span>
-              <h1 className="display-4 fw-bold font-serif">{service.title}</h1>
+              <h1 className="display-4 fw-bold font-serif mb-0">{service.title}</h1>
             </div>
           </div>
         </div>
       </section>
-
-      <div className="bg-brand-light py-3">
-        <div className="container">
-          <nav aria-label="breadcrumb">
-            <ol className="breadcrumb mb-0 small text-uppercase">
-              <li className="breadcrumb-item"><Link to="/">Home</Link></li>
-              <li className="breadcrumb-item"><Link to="/services">Services</Link></li>
-              <li className="breadcrumb-item active" aria-current="page">{service.title}</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
 
       <section className="section-padding">
         <div className="container">
@@ -113,6 +100,33 @@ const ServiceDetail = ({ fixedId }) => {
                 </motion.div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-white">
+        <div className="container">
+          <div className="row g-4 align-items-center">
+            <div className="col-lg-6">
+              <div className="row g-3">
+                {service.gallery.slice(0, 3).map((img, i) => (
+                  <div className="col-6" key={`extra-${i}`}>
+                    <div className="ratio ratio-4x3 overflow-hidden shadow-soft">
+                      <img src={img} className="cover-image" alt={`${service.title} view ${i + 1}`} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <h4 className="font-serif text-brand mb-3">What to expect</h4>
+              <ul className="list-unstyled text-brand-muted">
+                <li className="mb-2">• Tailored layouts and material recommendations for your space.</li>
+                <li className="mb-2">• Coordinated finishes, lighting, and hardware selections.</li>
+                <li className="mb-2">• Precision drawings and on-site guidance for smooth execution.</li>
+                <li className="mb-2">• Transparent timelines and milestone check-ins.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

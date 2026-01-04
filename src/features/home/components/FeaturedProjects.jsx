@@ -4,7 +4,14 @@ import { motion } from 'framer-motion';
 import { projects } from '@shared/data/projects';
 
 const FeaturedProjects = () => {
-  const featured = projects.slice(0, 3);
+  const featured = [];
+  const seen = new Set();
+  for (const p of projects) {
+    if (featured.length === 3) break;
+    if (seen.has(p.category)) continue;
+    featured.push(p);
+    seen.add(p.category);
+  }
 
   return (
     <section className="section-padding project-hero">
@@ -25,7 +32,7 @@ const FeaturedProjects = () => {
               transition={{ duration: 0.8, delay: index * 0.12 }}
             >
               <div className="project-hero__image">
-                <img src={project.image} alt={project.title} />
+                <img src={project.image} alt={project.title} loading="lazy" />
               </div>
               <div className="project-hero__body">
                 <h5 className="project-hero__title">{project.title}</h5>
