@@ -36,3 +36,4 @@ app/Http/Controllers/.DS_Store
 resources/views/.DS_Store
 .editorconfig
 .gitattributes
+/dist

@@ -15,7 +15,7 @@ const Footer = () => {
             <ul className="list-unstyled small text-light-emphasis footer-contact">
               <li className="d-flex align-items-start gap-3">
                 <FaMapMarkerAlt className="footer-icon mt-1" />
-                <p>No. 12, Design Avenue, Indiranagar, Bangalore, 560038</p>
+                <p>Shed No. 9, Ramaraju Garden, Ganapathipura Kanakapura Road, Bengaluru, Karnataka, 560062</p>
               </li>
               <li className="d-flex align-items-center gap-3">
                 <FaPhoneAlt className="footer-icon" />

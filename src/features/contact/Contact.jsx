@@ -16,7 +16,7 @@ const Contact = () => {
     const [submitted, setSubmitted] = useState(false);
 
     const infoItems = [
-      { key: 'location', label: 'Our Studio', val: 'No. 12, Design Avenue, Indiranagar, Bangalore, 560038', Icon: FiMapPin },
+      { key: 'location', label: 'Our Studio', val: 'Shed No. 9, Ramaraju Garden, Ganapathipura Kanakapura Road, Bengaluru, Karnataka, 560062', Icon: FiMapPin },
       { key: 'email', label: 'Email Us', val: 'hello@creativenconcepts.com', Icon: FiMail },
       { key: 'phone', label: 'Call Us', val: '+91 98765 43210', Icon: FiPhone }
     ];

@@ -200,10 +200,10 @@ const BeforeAfterSlider = ({ beforeSrc, afterSrc }) => {
 
 const OfficeSection = ({
   imgSrc = 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80',
-  title = 'New Delhi',
+  title = 'Bengaluru',
   eyebrow = 'Our Office',
-  address = '📍 No. 12, Design Avenue, Indiranagar, Bangalore, 560038',
-  mapsQuery = 'South+Extension+New+Delhi'
+  address = '📍 Shed No. 9, Ramaraju Garden, Ganapathipura Kanakapura Road, Bengaluru, Karnataka, 560062',
+  mapsQuery = 'https://maps.app.goo.gl/WiJMbY3sb62xtn4x8'
 }) => {
   return (
     <section className="office-section">
@@ -235,7 +235,7 @@ const OfficeSection = ({
             </p>
 
             <a
-              href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+              href={`${mapsQuery}`}
               target="_blank"
               rel="noreferrer"
               className="office-btn"
@@ -389,12 +389,10 @@ const AboutSubPage = () => {
 
   if (section === 'our-team') {
     const team = [
-      { name: 'Ar. Sahil Verma', role: 'Principal Architect', img: 'https://i.pravatar.cc/500?u=sahil' },
-      { name: 'Megha Roy', role: 'Head of Interiors', img: 'https://i.pravatar.cc/500?u=megha' },
-      { name: 'Rohan Deshmukh', role: 'Project Director', img: 'https://i.pravatar.cc/500?u=rohan' },
-      { name: 'Elena Gilbert', role: 'Senior Designer', img: 'https://i.pravatar.cc/500?u=elena' },
-      { name: 'Vikram Singh', role: 'Modular Specialist', img: 'https://i.pravatar.cc/500?u=vikram' },
-      { name: 'Priya Iyer', role: 'Client Relations', img: 'https://i.pravatar.cc/500?u=priya' }
+      { name: 'Mr. Naveen Kumar VP', role: 'Company Owner', img: '' },
+      { name: 'Mr. Anand Reddy', role: 'Manager', img: 'https://i.pravatar.cc/500?u=megha' },
+      { name: 'Mr. Raghu Kumar', role: 'Production Manager', img: 'https://i.pravatar.cc/500?u=rohan' },
+      { name: 'Mr. Anuj Rao', role: 'Senior Interior Designer', img: 'https://i.pravatar.cc/500?u=elena' },
     ];
 
     return (
@@ -461,10 +459,10 @@ const AboutSubPage = () => {
         {/* Inserted OfficeSection that mirrors your HTML design & animations */}
         <OfficeSection
           imgSrc="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80"
-          title="New Delhi"
+          title="Bengaluru"
           eyebrow="Our Office"
-          address={`📍 No. 12, Design Avenue, Indiranagar, Bangalore, 560038`}
-          mapsQuery="South+Extension+New+Delhi"
+          address={`📍 Shed No. 9, Ramaraju Garden, Ganapathipura Kanakapura Road, Bengaluru, Karnataka, 560062`}
+          mapsQuery="https://maps.app.goo.gl/WiJMbY3sb62xtn4x8"
         />
 
         {/* optionally keep other about sections below */}
