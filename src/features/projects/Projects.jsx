@@ -5,23 +5,41 @@ import Lightbox from './components/Lightbox';
 import ProjectCard from './components/ProjectCard';
 import PageHeader from '@shared/components/PageHeader';
 import contactBg from '@assets/images/banners/contact-bg.jpg';
+import { apiGet } from '../../services/api';
 
 const Projects = () => {
   const [filter, setFilter] = useState('All');
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [itemsToShow, setItemsToShow] = useState(12);
+  const [projectsData, setProjectsData] = useState(projects);
+  const [projectsError, setProjectsError] = useState(null);
+  const [apiStatus, setApiStatus] = useState('idle');
 
   const categories = useMemo(() => {
     const order = ['Residential', 'Commercial', 'Retail', 'Healthcare', 'Institutional'];
-    const unique = Array.from(new Set(projects.map((p) => p.category)));
+    const unique = Array.from(new Set(projectsData.map((p) => p.category)));
     const sorted = order.filter((cat) => unique.includes(cat));
     const remaining = unique.filter((cat) => !order.includes(cat));
     return ['All', ...sorted, ...remaining];
-  }, []);
+  }, [projectsData]);
 
   const filteredProjects = useMemo(() => {
-    return filter === 'All' ? projects : projects.filter((p) => p.category === filter);
-  }, [filter]);
+    return filter === 'All' ? projectsData : projectsData.filter((p) => p.category === filter);
+  }, [filter, projectsData]);
+
+  useEffect(() => {
+    apiGet('/api/v1/projects').then(({ data, error }) => {
+      if (data.projects) {
+        setProjectsData(Array.isArray(data.projects) ? data.projects : []);
+        setApiStatus('success');
+      }
+      if (error) {
+        console.error('Projects error:', error);
+        setProjectsError('Unable to load projects');
+        setApiStatus('error');
+      }
+    });
+  }, []);
 
   useEffect(() => {
     setItemsToShow(12);
@@ -43,6 +61,11 @@ const Projects = () => {
 
       <section className="section-padding">
           <div className="container">
+        {projectsError && (
+          <p className="text-warning small mb-3">
+            ⚠️ Showing cached projects. Live data unavailable.
+          </p>
+        )}
         <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
           {categories.map((cat) => (
             <button
@@ -74,10 +97,16 @@ const Projects = () => {
 
         {displayedProjects.length === 0 && (
           <div className="py-5 text-center">
-            <p className="font-serif text-brand-muted h4 mb-3">No projects found in this category.</p>
-            <button onClick={() => setFilter('All')} className="btn btn-outline-brand">
-              View All Projects
-            </button>
+            <p className="font-serif text-brand-muted h4 mb-3">
+              {apiStatus === 'success' && projectsData.length === 0
+                ? 'No projects available.'
+                : 'No projects found in this category.'}
+            </p>
+            {projectsData.length > 0 && (
+              <button onClick={() => setFilter('All')} className="btn btn-outline-brand">
+                View All Projects
+              </button>
+            )}
           </div>
         )}
 

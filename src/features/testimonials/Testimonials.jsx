@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { testimonials } from '@shared/data/testimonials';
 import PageHeader from '@shared/components/PageHeader';
 import contactBg from '@assets/images/banners/contact-bg.jpg';
+import { apiGet } from '../../services/api';
 
 const Testimonials = () => {
+  const [items, setItems] = useState(testimonials);
+  const [testimonialsError, setTestimonialsError] = useState(null);
+  const [apiStatus, setApiStatus] = useState('idle');
+
+  useEffect(() => {
+    apiGet('/api/v1/testimonials').then(({ data, error }) => {
+      if (data.testimonials) {
+        console.log(data);
+        setItems(Array.isArray(data.testimonials) ? data.testimonials : []);
+        setApiStatus('success');
+      }
+      if (error) {
+        console.error('Testimonials error:', error);
+        setTestimonialsError('Unable to load testimonials');
+        setApiStatus('error');
+      }
+    });
+  }, []);
+
   return (
     <div className="bg-brand-light">
       <PageHeader
@@ -18,8 +38,13 @@ const Testimonials = () => {
 
       <section className="section-padding">
         <div className="container">
+          {testimonialsError && (
+            <p className="text-warning small mb-3">
+              ⚠️ Some content may be outdated. Please try again later.
+            </p>
+          )}
           <div className="row g-4">
-            {testimonials.map((t, i) => (
+            {items.map((t, i) => (
               <div className="col-12 col-lg-6" key={`${t.id}-${i}`}>
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -49,6 +74,11 @@ const Testimonials = () => {
               </div>
             ))}
           </div>
+          {apiStatus === 'success' && items.length === 0 && (
+            <div className="py-4 text-center">
+              <p className="font-serif text-brand-muted h5 mb-0">No testimonials available.</p>
+            </div>
+          )}
         </div>
       </section>
     </div>

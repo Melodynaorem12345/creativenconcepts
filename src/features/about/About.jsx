@@ -3,6 +3,7 @@ import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageHeader from '@shared/components/PageHeader';
 import contactBg from '@assets/images/banners/contact-bg.jpg';
+import { apiGet } from '../../services/api';
 
 const CountUp = ({ end, suffix = '', duration = 1200 }) => {
   const [value, setValue] = useState(0);
@@ -251,6 +252,29 @@ const OfficeSection = ({
 
 const AboutSubPage = () => {
   const { section } = useParams();
+  const fallbackTeam = [
+    { name: 'Mr. Naveen Kumar VP', role: 'Company Owner', img: '' },
+    { name: 'Mr. Anand Reddy', role: 'Manager', img: 'https://i.pravatar.cc/500?u=megha' },
+    { name: 'Mr. Raghu Kumar', role: 'Production Manager', img: 'https://i.pravatar.cc/500?u=rohan' },
+    { name: 'Mr. Anuj Rao', role: 'Senior Interior Designer', img: 'https://i.pravatar.cc/500?u=elena' }
+  ];
+  const [teamMembers, setTeamMembers] = useState(fallbackTeam);
+  const [teamError, setTeamError] = useState(null);
+  const [teamStatus, setTeamStatus] = useState('idle');
+
+  useEffect(() => {
+    apiGet('/api/v1/team').then(({ data, error }) => {
+      if (data) {
+        setTeamMembers(Array.isArray(data) ? data : []);
+        setTeamStatus('success');
+      }
+      if (error) {
+        console.error('Team error:', error);
+        setTeamError('Unable to load team');
+        setTeamStatus('error');
+      }
+    });
+  }, []);
 
   if (section === 'who-we-are') {
     const reasons = [
@@ -388,13 +412,6 @@ const AboutSubPage = () => {
   }
 
   if (section === 'our-team') {
-    const team = [
-      { name: 'Mr. Naveen Kumar VP', role: 'Company Owner', img: '' },
-      { name: 'Mr. Anand Reddy', role: 'Manager', img: 'https://i.pravatar.cc/500?u=megha' },
-      { name: 'Mr. Raghu Kumar', role: 'Production Manager', img: 'https://i.pravatar.cc/500?u=rohan' },
-      { name: 'Mr. Anuj Rao', role: 'Senior Interior Designer', img: 'https://i.pravatar.cc/500?u=elena' },
-    ];
-
     return (
       <div>
         <PageHeader
@@ -405,6 +422,7 @@ const AboutSubPage = () => {
         showSubtitle={false}
         showDescription={false}
       />
+        {teamStatus !== 'success' || teamMembers.length > 0 ? (
         <section className="section-padding bg-white team-section">
           <div className="container">
                <motion.div
@@ -417,8 +435,13 @@ const AboutSubPage = () => {
                 <span className="section-heading mb-3 d-block">Certified professionals</span>
                 <h2>Our Dedicated Team</h2>
               </motion.div>
+              {teamError && (
+                <p className="text-warning small text-center mb-4">
+                  ⚠️ Some content may be outdated. Please try again later.
+                </p>
+              )}
             <div className="row g-4">
-              {team.map((member, i) => (
+              {teamMembers.map((member, i) => (
                 <div className="col-12 col-md-6 col-lg-4" key={member.name}>
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -440,6 +463,7 @@ const AboutSubPage = () => {
             </div>
           </div>
         </section>
+        ) : null}
       </div>
     );
   }

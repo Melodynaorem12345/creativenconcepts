@@ -1,25 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMapPin, FiMail, FiPhone } from 'react-icons/fi';
 import PageHeader from '@shared/components/PageHeader';
 import contactBg from '@assets/images/banners/contact-bg.jpg';
 import contactHero from '@assets/images/banners/contact-us-image.jpg';
+import { apiGet, apiPost } from '../../services/api';
 
 const Contact = () => {
+    const fallbackSettings = {
+      address: 'Shed No. 9, Ramaraju Garden, Ganapathipura Kanakapura Road, Bengaluru, Karnataka, 560062',
+      mobile: '+91 98765 43210',
+      email: 'hello@creativenconcepts.com'
+    };
     const [formData, setFormData] = useState({
       name: '',
       email: '',
+      phone: '',
       service: '',
       message: ''
     });
     const [errors, setErrors] = useState({});
-    const [submitted, setSubmitted] = useState(false);
+    const [submittedMessage, setSubmittedMessage] = useState('');
+    const [submitError, setSubmitError] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [settings, setSettings] = useState(fallbackSettings);
+    const [settingsError, setSettingsError] = useState(null);
 
-    const infoItems = [
-      { key: 'location', label: 'Our Studio', val: 'Shed No. 9, Ramaraju Garden, Ganapathipura Kanakapura Road, Bengaluru, Karnataka, 560062', Icon: FiMapPin },
-      { key: 'email', label: 'Email Us', val: 'hello@creativenconcepts.com', Icon: FiMail },
-      { key: 'phone', label: 'Call Us', val: '+91 98765 43210', Icon: FiPhone }
-    ];
+    useEffect(() => {
+      apiGet('/api/v1/company-settings').then(({ data, error }) => {
+        if (data) {
+          setSettings({ ...fallbackSettings, ...data });
+        }
+        if (error) {
+          console.error('Company settings error:', error);
+          setSettingsError('Unable to load company details');
+        }
+      });
+    }, []);
+
+    const infoItems = useMemo(() => ([
+      { key: 'location', label: 'Our Studio', val: settings.address || fallbackSettings.address, Icon: FiMapPin },
+      { key: 'email', label: 'Email Us', val: settings.email || fallbackSettings.email, Icon: FiMail },
+      { key: 'phone', label: 'Call Us', val: settings.mobile || fallbackSettings.mobile, Icon: FiPhone }
+    ]), [settings, fallbackSettings.address, fallbackSettings.email, fallbackSettings.mobile]);
 
     const leftVariant = {
       hidden: { opacity: 0, x: -80 },
@@ -36,6 +59,8 @@ const Contact = () => {
       visible: { opacity: 1, y: 0, transition: { duration: 1, ease: 'easeOut', delay: 0.35 } }
     };
 
+    const getErrorText = (value) => (Array.isArray(value) ? value.join(' ') : value);
+
     const validate = () => {
       const nextErrors = {};
       if (!formData.name.trim()) {
@@ -46,13 +71,8 @@ const Contact = () => {
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         nextErrors.email = 'Enter a valid email address.';
       }
-      if (!formData.service) {
-        nextErrors.service = 'Select the service you need.';
-      }
       if (!formData.message.trim()) {
         nextErrors.message = 'Tell us about your project.';
-      } else if (formData.message.trim().length < 10) {
-        nextErrors.message = 'Please provide a few more details (min 10 characters).';
       }
       return nextErrors;
     };
@@ -67,16 +87,44 @@ const Contact = () => {
           return updated;
         });
       }
-      if (submitted) setSubmitted(false);
+      if (submittedMessage) setSubmittedMessage('');
+      if (submitError) setSubmitError('');
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
+      if (isSubmitting) return;
+      setSubmittedMessage('');
+      setSubmitError('');
       const validationErrors = validate();
       setErrors(validationErrors);
-      if (Object.keys(validationErrors).length === 0) {
-        setSubmitted(true);
+      if (Object.keys(validationErrors).length > 0) return;
+
+      setIsSubmitting(true);
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message
+      };
+      const { data, error, errors: apiErrors } = await apiPost('/api/v1/contact-us', payload);
+      setIsSubmitting(false);
+
+      if (apiErrors && Object.keys(apiErrors).length) {
+        setErrors(apiErrors);
+        return;
       }
+
+      if (error) {
+        console.error('Lead submission error:', error);
+        setSubmitError('Something went wrong. Please try again later.');
+        return;
+      }
+
+      const successText = data?.message || 'Thanks for reaching out. We’ll get back to you shortly.';
+      setSubmittedMessage(successText);
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
     };
 
   return (
@@ -140,10 +188,12 @@ const Contact = () => {
                       />
                       {errors.name && (
                         <div id="contact-name-error" className="invalid-feedback d-block small">
-                          {errors.name}
+                          {getErrorText(errors.name)}
                         </div>
                       )}
                     </div>
+                    <input type="text" name="company" tabIndex="-1" autoComplete="off" style={{ display: 'none' }} />
+
                     <div className="col-md-6">
                       <label className="form-label small text-uppercase fw-semibold text-brand-muted">Email</label>
                       <input
@@ -158,7 +208,7 @@ const Contact = () => {
                       />
                       {errors.email && (
                         <div id="contact-email-error" className="invalid-feedback d-block small">
-                          {errors.email}
+                          {getErrorText(errors.email)}
                         </div>
                       )}
                     </div>
@@ -180,7 +230,7 @@ const Contact = () => {
                       </select>
                       {errors.service && (
                         <div id="contact-service-error" className="invalid-feedback d-block small">
-                          {errors.service}
+                          {getErrorText(errors.service)}
                         </div>
                       )}
                     </div>
@@ -198,17 +248,22 @@ const Contact = () => {
                       />
                       {errors.message && (
                         <div id="contact-message-error" className="invalid-feedback d-block small">
-                          {errors.message}
+                          {getErrorText(errors.message)}
                         </div>
                       )}
                     </div>
                     <div className="col-12">
-                      <button type="submit" className="btn btn-brand w-100 py-3 text-uppercase">
+                      <button type="submit" className="btn btn-brand w-100 py-3 text-uppercase" disabled={isSubmitting} aria-busy={isSubmitting}>
                         Submit Request
                       </button>
-                      {submitted && (
+                      {submittedMessage && (
                         <div className="alert alert-success rounded-3 mt-3 mb-0 py-2 px-3 small" role="status">
-                          Thanks for reaching out. We’ll get back to you shortly.
+                          {submittedMessage}
+                        </div>
+                      )}
+                      {submitError && (
+                        <div className="alert alert-danger rounded-3 mt-3 mb-0 py-2 px-3 small" role="status">
+                          {submitError}
                         </div>
                       )}
                     </div>
@@ -242,6 +297,11 @@ const Contact = () => {
               </div>
             ))}
           </div>
+          {settingsError && (
+            <p className="text-warning small mt-3 mb-0">
+              ⚠️ Some content may be outdated. Please try again later.
+            </p>
+          )}
         </div>
       </motion.div>
     </div>

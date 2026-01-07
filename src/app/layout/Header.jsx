@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa';
+import { apiGet } from '../../services/api';
 
 const Header = () => {
+  const fallbackSettings = {
+    brandName: 'CreativeNconcepts'
+  };
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showAboutMobile, setShowAboutMobile] = useState(false);
@@ -10,15 +14,16 @@ const Header = () => {
   const [expandedServiceKey, setExpandedServiceKey] = useState(null);
   const [isLgUp, setIsLgUp] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1200 : true);
   const [desktopOpen, setDesktopOpen] = useState(null);
+  const [settings, setSettings] = useState(fallbackSettings);
+  const [settingsError, setSettingsError] = useState(null);
   const location = useLocation();
 
   const serviceGroups = [
     {
       key: 'Kitchen',
       items: [
-        { label: 'Modular Kitchen', slug: 'kitchen' },
-        { label: 'Crockery Unit', slug: 'crockery-unit' },
-        { label: 'Foyer', slug: 'foyer' }
+        { label: 'Modular Kitchen', slug: 'kitchen' }
+        
       ]
     },
     {
@@ -32,8 +37,11 @@ const Header = () => {
       key: 'Living Room',
       items: [
         { label: 'Living Room', slug: 'living-room' },
+        { label: 'Crockery Unit', slug: 'crockery-unit' },
+        { label: 'Foyer', slug: 'foyer' },
         { label: 'TV Console', slug: 'tv-console' },
         { label: 'Pooja Room', slug: 'pooja-room' }
+
       ]
     }
   ];
@@ -71,6 +79,19 @@ const Header = () => {
     }
     return () => document.body.classList.remove('no-scroll');
   }, [isOpen, isLgUp]);
+
+  useEffect(() => {
+    apiGet('/api/v1/company-settings').then(({ data, error }) => {
+      if (data) {
+        const brandName = data.brandName || data.brand_name || data.name || fallbackSettings.brandName;
+        setSettings({ ...fallbackSettings, ...data, brandName });
+      }
+      if (error) {
+        console.error('Company settings error:', error);
+        setSettingsError('Unable to load company details');
+      }
+    });
+  }, []);
 
   const isPathActive = (path) => {
     if (path === '/') {
@@ -114,7 +135,7 @@ const Header = () => {
       <nav className={`navbar navbar-expand-xl navbar-light fixed-top bg-white header-nav ${scrolled ? 'shadow-sm' : ''}`}>
         <div className="container d-flex align-items-center">
           <NavLink className="navbar-brand fw-bold text-brand" to="/">
-            CreativeNconcepts
+            {settings.brandName || fallbackSettings.brandName}
           </NavLink>
           <button
             className="navbar-toggler"
@@ -230,6 +251,11 @@ const Header = () => {
                 <Link className="btn btn-brand w-100 w-lg-auto" to="/contact" onClick={closeMobileMenu}>
                   Book Consultation
                 </Link>
+                {settingsError && (
+                  <p className="text-warning small mt-2 mb-0">
+                    ⚠️ Some content may be outdated. Please try again later.
+                  </p>
+                )}
               </div>
             </div>
           </div>
