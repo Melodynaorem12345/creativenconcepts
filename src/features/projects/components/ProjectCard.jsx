@@ -24,7 +24,7 @@ const ProjectCard = ({ project, onClick }) => {
           loading="lazy"
         />
         <div className="position-absolute top-0 end-0 m-2 small badge bg-light text-brand fw-semibold text-uppercase project-badge">
-          {project.subCategory || project.category}
+          {project.sub_category || project.category}
         </div>
       </div>
     </motion.div>
