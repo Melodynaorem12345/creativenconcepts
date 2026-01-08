@@ -20,18 +20,26 @@ export const journeySteps = [
   },
   {
     id: 4,
-    title: 'Precision Manufacturing',
-    description: 'Our state-of-the-art facility crafts your modular units with German machinery, ensuring millimetric precision and lasting quality.',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200'
+    title: 'Quotation & Final Approval',
+    description: 'Once designs and materials are finalized, we present a detailed quotation. Upon your approval, technical drawings are frozen and the project is cleared for production.',
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 5,
+    title: 'Precision Manufacturing',
+    highlight: true,
+    badge: 'IMOS Powered',
+    description: 'After final approval, production begins using IMOS software to convert designs into machine-ready data. Our German-engineered machinery ensures millimetric precision.',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200'
+  },
+  {
+    id: 6,
     title: 'Expert Installation',
     description: 'Our trained professionals bring the pieces together in your home, ensuring a seamless fit and clean finish.',
     image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200'
   },
   {
-    id: 6,
+    id: 7,
     title: 'Handover & Beyond',
     description: 'A walkthrough of your new space, followed by our dedicated after-sales support to ensure your experience remains exceptional.',
     image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200'

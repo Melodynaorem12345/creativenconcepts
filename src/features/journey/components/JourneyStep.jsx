@@ -19,11 +19,18 @@ const JourneyStep = ({ step, index }) => {
               <span className="display-4 font-serif text-brand-muted">0{step.id}</span>
               <div className="flex-grow-1 border-top muted-border" />
             </div>
+            {step.badge && (
+              <div className="imos-highlight mb-4">
+                <span className="imos-chip">ENGINEERED WITH</span>
+                <h6 className="imos-title">{step.badge}</h6>
+                <p className="imos-sub">
+                  Production-grade software converting designs into machine-ready precision.
+                </p>
+              </div>
+            )}
+
             <h3 className="display-6 font-serif text-brand mb-3">{step.title}</h3>
             <p className="text-brand-muted lead">{step.description}</p>
-            <div className="mt-3">
-              <button className="btn btn-outline-brand btn-sm">Learn about our standards</button>
-            </div>
           </motion.div>
 
           <motion.div

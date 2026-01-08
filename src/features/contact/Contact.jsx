@@ -71,6 +71,12 @@ const Contact = () => {
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         nextErrors.email = 'Enter a valid email address.';
       }
+      if (!formData.phone.trim()) {
+        nextErrors.phone = 'Phone number is required.';
+      } else if (formData.phone.length !== 10) {
+        nextErrors.phone = 'Phone number must be exactly 10 digits.';
+      }
+
       if (!formData.message.trim()) {
         nextErrors.message = 'Tell us about your project.';
       }
@@ -79,7 +85,19 @@ const Contact = () => {
 
     const handleChange = (e) => {
       const { name, value } = e.target;
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      if (name === 'phone') {
+      const numericValue = value.replace(/\D/g, '');
+        if (numericValue.length > 10) return;
+          setFormData((prev) => ({
+            ...prev,
+            phone: numericValue
+          }));
+        } else {
+        setFormData((prev) => ({
+          ...prev,
+          [name]: value
+        }));
+      }
       if (errors[name]) {
         setErrors((prev) => {
           const updated = { ...prev };
@@ -212,7 +230,29 @@ const Contact = () => {
                         </div>
                       )}
                     </div>
-                    <div className="col-12">
+                    <div className="col-md-6">
+                      <label className="form-label small text-uppercase fw-semibold text-brand-muted">Phone Number</label>
+                       <input
+                        type="tel"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        maxLength={10}
+                        className={`form-control ${errors.phone ? 'is-invalid' : ''}`}
+                        placeholder="Enter 10-digit mobile number"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        aria-invalid={Boolean(errors.phone)}
+                        aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
+                      />
+                      {errors.phone && (
+                        <div id="contact-phone-error" className="invalid-feedback d-block small">
+                          {getErrorText(errors.phone)}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="col-md-6">
                       <label className="form-label small text-uppercase fw-semibold text-brand-muted">Service Required</label>
                       <select
                         className={`form-select ${errors.service ? 'is-invalid' : ''}`}

@@ -788,6 +788,35 @@
   transition: filter .28s ease, opacity .28s ease;
   opacity: 0.95;
 }
+.imos-highlight {
+  border-left: 3px solid #b89b6a;
+  padding-left: 16px;
+}
+
+.imos-chip {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8a7a64;
+  margin-bottom: 6px;
+}
+
+.imos-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #3f3326;
+  margin-bottom: 4px;
+}
+
+.imos-sub {
+  font-size: 0.85rem;
+  color: #7a6a55;
+  max-width: 420px;
+}
+
+
 
 @media (max-width: 768px) {
   .brands-grid { gap: 12px; }
