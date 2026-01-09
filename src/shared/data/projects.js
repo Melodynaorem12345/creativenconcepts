@@ -10,7 +10,7 @@ const categoryMap = {
   retail: 'Retail',
   institutional: 'Institutional',
   museum: "Museum",
-  medical: 'Medical College'
+  'medical-college': 'Medical College'
 };
 
 const toTitle = (slug) =>

@@ -5,22 +5,24 @@ import { projects } from '@shared/data/projects';
 
 const FeaturedProjects = () => {
   const HOME_CATEGORIES = ['Commercial', 'Medical College', 'Retail'];
+
   const featured = HOME_CATEGORIES
-  .map((category) => {
-    if (category === 'Commercial') {
+    .map((category) => {
+      if (category === 'Commercial') {
+        return projects.find(
+          (p) =>
+            p.category === 'Commercial' &&
+            p.subCategory?.toLowerCase() === 'hdfc bank'
+        );
+      }
+
       return projects.find(
         (p) =>
-          p.category === 'Commercial' &&
-          p.subCategory === 'Hdfc Bank'
+          p.category === category &&
+          !p.subCategory
       );
-    }
-    return projects.find(
-      (p) =>
-        p.category === category &&
-        !p.subCategory
-    );
-  })
-  .filter(Boolean);
+    })
+    .filter(Boolean);
 
   return (
     <section className="section-padding project-hero">
