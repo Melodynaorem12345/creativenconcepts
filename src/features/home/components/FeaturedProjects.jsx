@@ -4,14 +4,23 @@ import { motion } from 'framer-motion';
 import { projects } from '@shared/data/projects';
 
 const FeaturedProjects = () => {
-  const featured = [];
-  const seen = new Set();
-  for (const p of projects) {
-    if (featured.length === 3) break;
-    if (seen.has(p.category)) continue;
-    featured.push(p);
-    seen.add(p.category);
-  }
+  const HOME_CATEGORIES = ['Commercial', 'Medical College', 'Retail'];
+  const featured = HOME_CATEGORIES
+  .map((category) => {
+    if (category === 'Commercial') {
+      return projects.find(
+        (p) =>
+          p.category === 'Commercial' &&
+          p.subCategory === 'Hdfc Bank'
+      );
+    }
+    return projects.find(
+      (p) =>
+        p.category === category &&
+        !p.subCategory
+    );
+  })
+  .filter(Boolean);
 
   return (
     <section className="section-padding project-hero">

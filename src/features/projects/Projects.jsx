@@ -16,7 +16,7 @@ const Projects = () => {
   const [apiStatus, setApiStatus] = useState('idle');
 
   const categories = useMemo(() => {
-    const order = ['Residential', 'Commercial', 'Retail', 'Healthcare', 'Institutional'];
+    const order = ['Residential', 'Commercial', 'Retail', 'Medical College', 'Institutional', 'Museum'];
     const unique = Array.from(new Set(projectsData.map((p) => p.category)));
     const sorted = order.filter((cat) => unique.includes(cat));
     const remaining = unique.filter((cat) => !order.includes(cat));

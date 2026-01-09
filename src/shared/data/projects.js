@@ -5,11 +5,12 @@ const imageModules = import.meta.glob('../../assets/images/projects/**/*.{jpeg,j
 });
 
 const categoryMap = {
+  residential: 'Residential',
   commercial: 'Commercial',
-  healthcare: 'Healthcare',
-  institutional: 'Institutional',
   retail: 'Retail',
-  residential: 'Residential'
+  institutional: 'Institutional',
+  museum: "Museum",
+  medical: 'Medical College'
 };
 
 const toTitle = (slug) =>

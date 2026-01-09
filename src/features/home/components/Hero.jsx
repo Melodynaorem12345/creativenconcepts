@@ -42,7 +42,7 @@ const Hero = () => {
   useEffect(() => {
     const id = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6500);
+    }, 8000);
     return () => clearInterval(id);
   }, [slides.length]);
 
@@ -61,7 +61,7 @@ const Hero = () => {
             className="hero-slide"
             initial={{ opacity: 0, scale: 1.05 }}
             animate={index === currentSlide ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.02 }}
-            transition={{ duration: 1.2, ease: 'easeOut' }}
+            transition={{ duration: 1.6, ease: 'easeOut' }}
           >
             <img
               src={slide.image}

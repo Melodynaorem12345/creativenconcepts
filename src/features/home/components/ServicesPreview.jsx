@@ -53,11 +53,10 @@ const ServicesPreview = () => {
     'kitchen',
     'living-room',
     'crockery-unit',
-    'foyer',
+    'wardrobe',
     'tv-console',
     'pooja-room',
     'vanity',
-    'wardrobe',
     'commercial-projects',
     'retail'
   ];

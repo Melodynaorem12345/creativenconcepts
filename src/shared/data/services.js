@@ -39,26 +39,16 @@ export const services = [
     ]
   },
   {
-    id: 'crockery-unit',
-    title: 'Crockery & Bar Units',
-    category: 'Residential',
-    shortDescription: 'Sophisticated storage for your fine collections.',
-    description: 'Showcase your dining essentials with glass-fronted units, internal ambient lighting, and high-performance hardware that ensures smooth operation and safety. Our bar units integrate seamlessly with your dining or living room layout.',
-    bannerImage: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=80&w=2000',
-    gallery: [
-      'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=80&w=800'
-    ]
-  },
-  {
-    id: 'foyer',
-    title: 'Grand Entrances & Foyers',
-    category: 'Residential',
-    shortDescription: 'Setting the tone from the very first step.',
-    description: 'The foyer is the preface to your home. We design welcoming entryways with custom seating, mirrors, and lighting that create an immediate sense of arrival. We balance functionality like shoe storage with high-end aesthetic appeal.',
-    bannerImage: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=2000',
-    gallery: [
-      'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
-    ]
+  id: 'crockery-unit',
+  title: 'Crockery, Bar & Foyer Units',
+  category: 'Residential',
+  shortDescription:'Sophisticated storage and welcoming entry solutions designed as architectural statements.',
+  description: 'Our Crockery, Bar, and Foyer units are designed as seamless architectural elements that elevate everyday living. From elegant glass-fronted crockery displays and integrated bar units to thoughtfully planned foyer storage and seating, we balance aesthetics with functionality. Ambient lighting, premium finishes, and high-performance hardware ensure durability, safety, and refined visual appeal throughout your home.',
+  bannerImage: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=80&w=2000',
+  gallery: [
+    'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&q=80&w=800',
+    'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
+  ]
   },
   {
     id: 'pooja-room',
