@@ -3,7 +3,7 @@
   background-size: 200% 100%;
   background-position: 0 0;
   color: #fff;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
   border: none;
   letter-spacing: 0.12em;
@@ -21,7 +21,7 @@
 }
 
 .btn-outline-brand {
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 600;
   padding: 10px 12px;
   border-radius: 8px;
@@ -261,7 +261,7 @@
 }
 
 .deliverables__title {
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 700;
   line-height: 1.2;
   margin: 0;
@@ -353,7 +353,7 @@
 
 .deliverables__card-title {
   margin: 0;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.005em;
 }
@@ -383,7 +383,7 @@
   padding: 0 48px 0 56px;
   background: #8e846f;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;

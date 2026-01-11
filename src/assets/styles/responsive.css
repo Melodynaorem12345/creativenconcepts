@@ -8,6 +8,65 @@
   html {
     font-size: 18px;
   }
+  body.app-body {
+    font-size: clamp(1rem, 0.25vw + 0.95rem, 1.125rem);
+  }
+  .hero-section .display-3 {
+    font-size: clamp(3rem, 0.7vw + 2.4rem, 4rem);
+  }
+  .hero-section .lead {
+    font-size: clamp(1rem, 0.35vw + 0.95rem, 1.35rem);
+  }
+  .inner-pages-banner .display-4 {
+    font-size: clamp(2.5rem, 0.65vw + 2.1rem, 3.5rem);
+  }
+  .section-title {
+    font-size: clamp(1.75rem, 0.55vw + 1.45rem, 2.5rem);
+  }
+  .sec-title h2 {
+    font-size: clamp(2.5rem, 0.7vw + 2.1rem, 3.35rem);
+  }
+  .contact-head {
+    font-size: clamp(2.25rem, 0.5vw + 2rem, 3rem);
+  }
+  .info-heading {
+    font-size: clamp(1.5rem, 0.4vw + 1.3rem, 2rem);
+  }
+  .testimonial-body p,
+  .section-title p,
+  .deliverables__card-copy {
+    font-size: clamp(1rem, 0.3vw + 0.95rem, 1.2rem);
+  }
+  .service-details .hero h1 {
+    font-size: clamp(2.75rem, 0.8vw + 2.4rem, 3.6rem);
+  }
+  .service-details .content h2 {
+    font-size: clamp(2rem, 0.6vw + 1.8rem, 2.75rem);
+  }
+  .service-details .cta h3 {
+    font-size: clamp(1.9rem, 0.6vw + 1.65rem, 2.6rem);
+  }
+  .deliverables__title {
+    font-size: clamp(1.75rem, 0.55vw + 1.5rem, 2.4rem);
+  }
+  .deliverables__card-title {
+    font-size: clamp(1.15rem, 0.4vw + 1rem, 1.6rem);
+  }
+  .office-title {
+    font-size: clamp(1.6rem, 0.5vw + 1.4rem, 2.2rem);
+  }
+  .office-address {
+    font-size: clamp(1.7rem, 0.55vw + 1.5rem, 2.4rem);
+  }
+  .btn,
+  .btn-brand,
+  .btn-outline-brand,
+  .navbar-cta .btn,
+  .commitments-cta,
+  .deliverables__cta,
+  .office-btn {
+    font-size: clamp(0.85rem, 0.15vw + 0.82rem, 1rem);
+  }
   .about-dropdown .dropdown-item,
   .services-category-btn,
   .services-items .services-item-link {
@@ -25,10 +84,10 @@
     font-size: 24px;
   }
   .container{
-    max-width: 92vw;
+    max-width: min(92vw, 1560px);
   }
   .deliverables .container{
-    max-width: 65vw;
+    max-width: min(75vw, 1300px);
   }
   .deliverables__cards{
     grid-template-columns: repeat(2, 500px);
@@ -63,6 +122,36 @@
     padding-left: 10em;
   }
   
+}
+
+@media (min-width: 1920px) {
+  html {
+    font-size: 19px;
+  }
+  .container {
+    max-width: min(88vw, 1680px);
+  }
+  .deliverables .container {
+    max-width: min(70vw, 1500px);
+  }
+  .deliverables__cards {
+    grid-template-columns: repeat(2, minmax(520px, 600px));
+  }
+}
+
+@media (min-width: 2560px) {
+  html {
+    font-size: 20px;
+  }
+  .container {
+    max-width: min(84vw, 1920px);
+  }
+  .deliverables .container {
+    max-width: min(68vw, 1600px);
+  }
+  .deliverables__cards {
+    grid-template-columns: repeat(2, minmax(560px, 640px));
+  }
 }
 
 @media (max-width: 1200px) {
@@ -375,4 +464,3 @@
     width: 180px;
   }
 }
-
