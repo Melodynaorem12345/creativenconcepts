@@ -67,6 +67,7 @@ const Hero = () => {
               src={slide.image}
               className="cover-image"
               alt={slide.title}
+              loading="lazy"
             />
           </motion.div>
         ))}

@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '@app/layout/MainLayout';
 import Home from '@features/home/Home';
 import AboutSubPage from '@features/about/About';
-import ServiceDetail from '@features/services/ServiceDetail';
+import ServiceDetails from '../pages/ServiceDetails/ServiceDetails';
 import ModularJourney from '@features/journey/ModularJourney';
 import Projects from '@features/projects/Projects';
 import Testimonials from '@features/testimonials/Testimonials';
@@ -22,20 +22,20 @@ const AppRouter = () => {
         </Route>
         
         <Route path="services">
-          <Route index element={<Navigate to="kitchen" />} />
+          <Route index element={<Navigate to="modular-kitchen" />} />
           
           {/* Nested Route Handling for Living Room Sub-Categories */}
           <Route path="living-room">
-            <Route index element={<ServiceDetail fixedId="living-room" />} />
-            <Route path="tv-console" element={<ServiceDetail fixedId="tv-console" />} />
-            <Route path="crockery-unit" element={<ServiceDetail fixedId="crockery-unit" />} />
-            <Route path="foyer" element={<ServiceDetail fixedId="foyer" />} />
-            <Route path="pooja-room" element={<ServiceDetail fixedId="pooja-room" />} />
-            <Route path="vanity" element={<ServiceDetail fixedId="vanity" />} />
+            <Route index element={<ServiceDetails fixedSlug="living-room" />} />
+            <Route path="tv-console" element={<ServiceDetails fixedSlug="tv-console" />} />
+            <Route path="crockery-unit" element={<ServiceDetails fixedSlug="crockery-unit" />} />
+            <Route path="foyer" element={<ServiceDetails fixedSlug="foyer" />} />
+            <Route path="pooja-room" element={<ServiceDetails fixedSlug="pooja-room" />} />
+            <Route path="vanity" element={<ServiceDetails fixedSlug="vanity" />} />
           </Route>
           
           {/* Dynamic route for other top-level services */}
-          <Route path=":serviceId" element={<ServiceDetail />} />
+          <Route path=":serviceSlug" element={<ServiceDetails />} />
         </Route>
         
         <Route path="modular-journey" element={<ModularJourney />} />

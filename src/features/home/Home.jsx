@@ -38,7 +38,7 @@ const Home = () => {
             <div className="col-lg-6">
               <div className="row g-3">
                 <div className="col-6 d-flex flex-column gap-3">
-                  <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&q=80&w=800" className="img-fluid shadow-soft rounded" alt="Design detail" />
+                  <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&q=80&w=800" className="img-fluid shadow-soft rounded" alt="Design detail" loading="lazy" />
                   <div className="bg-brand-dark text-white text-center py-4 rounded shadow-soft">
                     <div className="h2 font-serif mb-1 text-brand-muted">12+</div>
                     <div className="small text-uppercase">Design Awards</div>
@@ -49,7 +49,7 @@ const Home = () => {
                     <div className="h2 font-serif mb-1">500+</div>
                     <div className="small text-uppercase">Happy Clients</div>
                   </div>
-                  <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800" className="img-fluid shadow-soft rounded" alt="Kitchen detail" />
+                  <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800" className="img-fluid shadow-soft rounded" alt="Kitchen detail" loading="lazy" />
                 </div>
               </div>
             </div>

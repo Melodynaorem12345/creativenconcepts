@@ -51,6 +51,18 @@ export const services = [
   ]
   },
   {
+    id: 'foyer',
+    title: 'Foyer & Entry Spaces',
+    category: 'Residential',
+    shortDescription: 'Warm, organized entry zones that set the tone for your home.',
+    description: 'We design foyers with smart storage, thoughtful seating, and layered lighting that creates an inviting first impression. Materials, finishes, and accents are curated to reflect your home’s personality while staying practical for daily use.',
+    bannerImage: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=2000',
+    gallery: [
+      'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800',
+      'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=800'
+    ]
+  },
+  {
     id: 'pooja-room',
     title: 'Spiritual Pooja Rooms',
     category: 'Residential',

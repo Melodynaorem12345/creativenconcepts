@@ -8,6 +8,7 @@ import '@assets/styles/global.css';
 import '@assets/styles/layout.css';
 import '@assets/styles/components.css';
 import '@assets/styles/pages.css';
+import '@assets/styles/responsive.css';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');

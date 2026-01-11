@@ -189,8 +189,8 @@ const BeforeAfterSlider = ({ beforeSrc, afterSrc }) => {
 
   return (
     <div className="ba-slider" ref={containerRef}>
-      <img className="ba-slider__before" src={beforeSrc} alt="Before" />
-      <img className="ba-slider__after" ref={afterRef} src={afterSrc} alt="After" />
+      <img className="ba-slider__before" src={beforeSrc} alt="Before" loading="lazy" />
+      <img className="ba-slider__after" ref={afterRef} src={afterSrc} alt="After" loading="lazy" />
       <div className="ba-slider__handle" ref={handleRef} role="slider" aria-valuemin={0} aria-valuemax={100} aria-valuenow={50} tabIndex={0}>
         <span className="ba-slider__arrow ba-slider__arrow--left" />
         <span className="ba-slider__arrow ba-slider__arrow--right" />
@@ -252,27 +252,24 @@ const OfficeSection = ({
 
 const AboutSubPage = () => {
   const { section } = useParams();
-  const fallbackTeam = [
-    { name: 'Mr. Naveen Kumar VP', role: 'Company Owner', img: '' },
-    { name: 'Mr. Anand Reddy', role: 'Manager', img: 'https://i.pravatar.cc/500?u=megha' },
-    { name: 'Mr. Raghu Kumar', role: 'Production Manager', img: 'https://i.pravatar.cc/500?u=rohan' },
-    { name: 'Mr. Anuj Rao', role: 'Senior Interior Designer', img: 'https://i.pravatar.cc/500?u=elena' }
-  ];
-  const [teamMembers, setTeamMembers] = useState(fallbackTeam);
+  const [teamMembers, setTeamMembers] = useState([]);
   const [teamError, setTeamError] = useState(null);
   const [teamStatus, setTeamStatus] = useState('idle');
 
   useEffect(() => {
+    setTeamStatus('loading');
     apiGet('/api/v1/team').then(({ data, error }) => {
       if (data) {
         setTeamMembers(Array.isArray(data) ? data : []);
         setTeamStatus('success');
+        return;
       }
       if (error) {
         console.error('Team error:', error);
         setTeamError('Unable to load team');
         setTeamStatus('error');
       }
+      setTeamMembers([]);
     });
   }, []);
 
@@ -314,6 +311,7 @@ const AboutSubPage = () => {
                     src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200"
                     className="cover-image"
                     alt="Studio"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -390,6 +388,7 @@ const AboutSubPage = () => {
                   <img
                     src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=1200"
                     alt="Lounge vignette"
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -422,8 +421,7 @@ const AboutSubPage = () => {
         showSubtitle={false}
         showDescription={false}
       />
-        {teamStatus !== 'success' || teamMembers.length > 0 ? (
-        <section className="section-padding bg-white team-section">
+        <section className="section-padding bg-white team-section team-section--stable">
           <div className="container">
                <motion.div
                 className="sec-title d-flex flex-column justify-content-center align-items-center mb-5"
@@ -440,30 +438,41 @@ const AboutSubPage = () => {
                   ⚠️ Some content may be outdated. Please try again later.
                 </p>
               )}
-            <div className="row g-4">
-              {teamMembers.map((member, i) => (
-                <div className="col-12 col-md-6 col-lg-4" key={member.name}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                    className="card h-100 teams-box"
-                  >
-                    <div className="overflow-hidden">
-                      <img src={member.img} className="cover-image" alt={member.name} />
-                    </div>
-                    <div className="card-body text-center">
-                      <h5 className="card-title font-serif text-brand mb-1">{member.name}</h5>
-                      <p className="mb-0">{member.role}</p>
-                    </div>
-                  </motion.div>
-                </div>
-              ))}
-            </div>
+            {teamStatus === 'loading' ? (
+              <div className="text-center text-brand-muted small">Loading team...</div>
+            ) : teamMembers.length > 0 ? (
+              <div className="row g-4">
+                {teamMembers.map((member, i) => (
+                  <div className="col-12 col-md-6 col-lg-4" key={`${member.name}-${i}`}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.05 }}
+                      className="card h-100 teams-box"
+                    >
+                      <div className="overflow-hidden">
+                        {member.img ? (
+                          <img src={member.img} className="cover-image" alt={member.name} loading="lazy" />
+                        ) : (
+                          <div className="ratio ratio-1x1 bg-brand-mid d-flex align-items-center justify-content-center text-brand-muted">
+                            No image
+                          </div>
+                        )}
+                      </div>
+                      <div className="card-body text-center">
+                        <h5 className="card-title font-serif text-brand mb-1">{member.name}</h5>
+                        <p className="mb-0">{member.role}</p>
+                      </div>
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-brand-muted text-center mb-0">No team members found.</p>
+            )}
           </div>
         </section>
-        ) : null}
       </div>
     );
   }

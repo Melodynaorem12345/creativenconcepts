@@ -104,7 +104,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="col-6 col-lg-4">
+          <div className="col-6 col-lg-4 pl-xll">
             <h6 className="text-uppercase small fw-bold mb-3">Services</h6>
             <ul className="list-unstyled small text-light-emphasis footer-links">
               <li><Link className="footer-link" to="/services/kitchen">Modular Kitchen</Link></li>
@@ -119,12 +119,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-center pt-4 mt-2 footer-bar text-uppercase small text-light-emphasis">
-          <p className="mb-2 mb-md-0 footer-subtle">© 2024 CreativeNconcepts. All rights reserved.</p>
-          <div className="d-flex gap-3">
-            <a href="#" className="footer-link text-uppercase">Privacy Policy</a>
-            <a href="#" className="footer-link text-uppercase">Terms of Use</a>
-          </div>
+        <div className="d-flex justify-content-center align-items-center pt-4 mt-2 footer-bar text-uppercase small text-light-emphasis">
+          <p className="mb-0 footer-subtle">© 2026 CreativeNconcepts. All rights reserved.</p>
         </div>
       </div>
     </footer>

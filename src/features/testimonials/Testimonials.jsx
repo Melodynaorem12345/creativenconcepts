@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { testimonials } from '@shared/data/testimonials';
 import PageHeader from '@shared/components/PageHeader';
 import contactBg from '@assets/images/banners/contact-bg.jpg';
 import { apiGet } from '../../services/api';
 
 const Testimonials = () => {
-  const [items, setItems] = useState(testimonials);
+  const [items, setItems] = useState(null);
   const [testimonialsError, setTestimonialsError] = useState(null);
   const [apiStatus, setApiStatus] = useState('idle');
+  const didFetchRef = useRef(false);
 
   useEffect(() => {
+    if (didFetchRef.current) return;
+    didFetchRef.current = true;
+    setApiStatus('loading');
     apiGet('/api/v1/testimonials').then(({ data, error }) => {
-      if (data.testimonials) {
-        console.log(data);
+      if (data) {
         setItems(Array.isArray(data.testimonials) ? data.testimonials : []);
         setApiStatus('success');
+        return;
       }
       if (error) {
         console.error('Testimonials error:', error);
         setTestimonialsError('Unable to load testimonials');
         setApiStatus('error');
       }
+      setItems([]);
     });
   }, []);
 
@@ -43,8 +47,11 @@ const Testimonials = () => {
               ⚠️ Some content may be outdated. Please try again later.
             </p>
           )}
+          {apiStatus === 'loading' && (
+            <p className="text-brand-muted small mb-3">Loading testimonials...</p>
+          )}
           <div className="row g-4">
-            {items.map((t, i) => (
+            {(items || []).map((t, i) => (
               <div className="col-12 col-lg-6" key={`${t.id}-${i}`}>
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -61,8 +68,12 @@ const Testimonials = () => {
                       “{t.content}”
                     </p>
                     <div className="d-flex align-items-center gap-3 pt-3 border-top muted-border">
-                      <div className="rounded-circle overflow-hidden avatar-64">
-                        <img src={t.avatar} className="cover-image" alt={t.name} />
+                      <div className="rounded-circle overflow-hidden avatar-64 bg-brand-mid d-flex align-items-center justify-content-center text-brand fw-semibold">
+                        {t.avatar && t.avatar.trim() !== '' ? (
+                          <img src={t.avatar} className="cover-image" alt={t.name} loading="lazy" />
+                        ) : (
+                          <span aria-hidden="true">{t.name?.slice(0, 1) || '?'}</span>
+                        )}
                       </div>
                       <div>
                         <h6 className="mb-0 text-brand">{t.name}</h6>

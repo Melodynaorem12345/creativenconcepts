@@ -41,7 +41,13 @@ const JourneyStep = ({ step, index }) => {
             className={`col-lg-6 ${isEven ? '' : 'order-lg-1'}`}
           >
             <div className="ratio ratio-4x3 shadow-soft overflow-hidden">
-              <img src={step.image} className="cover-image" alt={step.title} />
+              {step.image && step.image.trim() !== '' ? (
+                <img src={step.image} className="cover-image" alt={step.title} loading="lazy" />
+              ) : (
+                <div className="w-100 h-100 d-flex align-items-center justify-content-center bg-brand-mid text-brand-muted small">
+                  Image unavailable
+                </div>
+              )}
             </div>
           </motion.div>
         </div>

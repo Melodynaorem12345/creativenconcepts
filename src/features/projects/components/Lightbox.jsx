@@ -8,6 +8,11 @@ const Lightbox = ({ isOpen, items = [], currentIndex = 0, onClose, onPrev, onNex
   const current = useMemo(() => items[safeIndex], [items, safeIndex]);
   const canPrev = items.length > 1 && safeIndex > 0;
   const canNext = items.length > 1 && safeIndex < items.length - 1;
+  const imageSrc = useMemo(() => {
+    if (!current?.image) return null;
+    if (typeof current.image === 'string' && current.image.trim() === '') return null;
+    return current.image;
+  }, [current]);
 
   return (
     <AnimatePresence>
@@ -57,13 +62,20 @@ const Lightbox = ({ isOpen, items = [], currentIndex = 0, onClose, onPrev, onNex
             className="position-relative w-100 h-100 d-flex align-items-center justify-content-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <motion.img
-              src={current.image}
-              alt={current.title || 'Preview'}
-              className="img-fluid h-100 w-100"
-              style={{ objectFit: zoomed ? 'contain' : 'cover', transition: 'transform 0.2s ease' }}
-              animate={{ scale: zoomed ? 1.1 : 1 }}
-            />
+            {imageSrc ? (
+              <motion.img
+                src={imageSrc}
+                alt={current.title || 'Preview'}
+                className="img-fluid h-100 w-100"
+                loading="lazy"
+                style={{ objectFit: zoomed ? 'contain' : 'cover', transition: 'transform 0.2s ease' }}
+                animate={{ scale: zoomed ? 1.1 : 1 }}
+              />
+            ) : (
+              <div className="d-flex align-items-center justify-content-center w-100 h-100 text-white-50">
+                Image unavailable
+              </div>
+            )}
             <div className="position-absolute bottom-0 start-0 end-0 p-3 text-center text-white bg-gradient">
               <div className="small text-uppercase">{current.category}</div>
               <div className="fw-bold">{current.title}</div>

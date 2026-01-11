@@ -29,7 +29,7 @@ const JourneyPreview = () => {
             <span className="section-heading text-light d-block mb-3">Process Engineering</span>
             <h2 className="display-5 font-serif fw-semibold mb-4">The Modular Journey</h2>
             <p className="text-white-50 lead mb-4">
-              We believe that the process is as important as the outcome. Our 6-step modular journey ensures total transparency, unwavering quality, and a stress-free delivery experience.
+              We believe that the process is as important as the outcome. Our 11-step modular journey ensures total transparency, unwavering quality, and a stress-free delivery experience.
             </p>
             <div className="d-grid gap-4 mb-4">
               {journeySteps.slice(0, 3).map((step) => (

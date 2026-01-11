@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const ProjectCard = ({ project, onClick }) => {
+  const imageSrc = typeof project.image === 'string' ? project.image.trim() : project.image;
+
   return (
     <motion.div
       layout
@@ -17,12 +19,18 @@ const ProjectCard = ({ project, onClick }) => {
       onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onClick?.()}
     >
       <div className="project-card__media">
-        <img
-          src={project.image}
-          className="card-img-top cover-image"
-          alt={project.title}
-          loading="lazy"
-        />
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            className="card-img-top cover-image"
+            alt={project.title}
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-100 h-100 d-flex align-items-center justify-content-center bg-brand-mid text-brand-muted small">
+            Image unavailable
+          </div>
+        )}
         <div className="position-absolute top-0 end-0 m-2 small badge bg-light text-brand fw-semibold text-uppercase project-badge">
           {project.subCategory || project.category}
         </div>

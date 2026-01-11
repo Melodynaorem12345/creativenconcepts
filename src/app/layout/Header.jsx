@@ -22,25 +22,23 @@ const Header = () => {
     {
       key: 'Kitchen',
       items: [
-        { label: 'Modular Kitchen', slug: 'kitchen' }
+        { label: 'Modular Kitchen', path: 'kitchen' }
         
       ]
     },
     {
       key: 'Wardrobe',
       items: [
-        { label: 'Custom Wardrobes', slug: 'wardrobe' },
-        { label: 'Vanity', slug: 'vanity' }
+        { label: 'Custom Wardrobes', path: 'wardrobe' }
       ]
     },
     {
       key: 'Living Room',
       items: [
-        { label: 'Living Room', slug: 'living-room' },
-        { label: 'Crockery Unit', slug: 'crockery-unit' },
-        { label: 'Foyer', slug: 'foyer' },
-        { label: 'TV Console', slug: 'tv-console' },
-        { label: 'Pooja Room', slug: 'pooja-room' }
+        { label: 'Crockery Unit', path: 'living-room/crockery-unit' },
+        { label: 'Foyer', path: 'living-room/foyer' },
+        { label: 'TV Console', path: 'living-room/tv-console' },
+        { label: 'Pooja Room', path: 'living-room/pooja-room' }
 
       ]
     }
@@ -116,12 +114,18 @@ const Header = () => {
     setDesktopOpen(null);
   };
   const handleAboutToggle = () => {
-    if (isLgUp) return;
+    if (isLgUp) {
+      setDesktopOpen('about');
+      return;
+    }
     setShowAboutMobile((prev) => !prev);
   };
 
   const handleServicesToggle = () => {
-    if (isLgUp) return;
+    if (isLgUp) {
+      setDesktopOpen('services');
+      return;
+    }
     setShowServicesMobile((prev) => !prev);
   };
 
@@ -221,7 +225,7 @@ const Header = () => {
                               <ul className="services-items list-unstyled mb-0">
                                 {group.items.map((sub) => (
                                   <li key={sub.label}>
-                                    <NavLink className="services-item-link" to={`/services/${sub.slug}`} onClick={closeMobileMenu}>
+                                    <NavLink className="services-item-link" to={`/services/${sub.path}`} onClick={closeMobileMenu}>
                                       {sub.label}
                                     </NavLink>
                                   </li>

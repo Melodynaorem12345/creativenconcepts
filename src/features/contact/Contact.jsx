@@ -171,11 +171,12 @@ const Contact = () => {
                   src={contactHero}
                   alt="Contact us image"
                   className="w-100 h-100"
+                  loading="lazy"
                   style={{ objectFit: 'cover', display: 'block' }}
                 />
               </motion.div>
             </div>
-            <div className="col-lg-6 d-flex flex-column">
+            <div className="col-lg-6 d-flex flex-column j-c-xl">
               <motion.div variants={rightVariant} initial="hidden" animate="visible" className="mb-2 section-title">
                 <h2 className="contact-head">Designing <span className='fst-italic text-brand-muted'>Your Future</span> Starts Here.</h2>
                 <p className="text-brand-muted mb-0">
@@ -188,7 +189,7 @@ const Contact = () => {
                 initial="hidden"
                 animate="visible"
                 transition={{ delay: 0.12 }}
-                className="card border-0 flex-grow-1"
+                className="card border-0"
               >
                 <div className="card-body h-100 d-flex flex-column p-0">
                   <form className="row g-3 mt-auto contact-form" onSubmit={handleSubmit} noValidate aria-label="Contact form">
@@ -325,7 +326,7 @@ const Contact = () => {
           <div className="row g-3">
             {infoItems.map((item) => (
               <div className="col-12 col-md-6 col-lg-4 custom-apply" key={item.key}>
-                <div className="p-4 h-100 contact-info-item d-flex align-items-start gap-3">
+                <div className="px-1 p-xl-4 h-100 contact-info-item d-flex align-items-start gap-3">
                   <div className="text-brand icon-box" aria-hidden="true">
                     <item.Icon />
                   </div>
