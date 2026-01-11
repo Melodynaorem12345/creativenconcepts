@@ -188,20 +188,18 @@
   position: relative;
   z-index: 2;
 }
-.custom-apply:first-child .contact-info-item .icon-box{
-  width: 126px;
-  height: 58px;
-}
 .contact-info-item .icon-box{
     position: relative;
-    height: 60px;
-    width: 60px;
+    flex: 0 0 3.75rem;
+    width: 3.75rem;
+    height: 3.75rem;
+    min-width: 3.75rem;
     background-color: #EAF0EC;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 .teams-box{
   border: 1px solid #F1F1F1 !important;

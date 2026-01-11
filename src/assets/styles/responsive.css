@@ -92,9 +92,6 @@
   .deliverables__cards{
     grid-template-columns: repeat(2, 500px);
   }
-  .custom-apply:first-child .contact-info-item .icon-box {
-    width: 60px;
-  }
   .header-nav {
     min-height: 118px;
   }
@@ -294,9 +291,6 @@
   .what-we-offer__grid {
     gap: 1.5rem;
   }
-  .custom-apply:first-child .contact-info-item .icon-box {
-    width: 170px;
-  }
 }
 
 @media (max-width: 992px) {
@@ -401,9 +395,6 @@
     font-size: 30px;
     line-height: 38px;
   }
-  .custom-apply:first-child .contact-info-item .icon-box {
-    width: 150px;
-  }
 }
 @media (max-width: 576px) {
   .deliverables__cards {
@@ -459,8 +450,5 @@
   }
   .office-title {
     font-size: 22px;
-  }
-  .custom-apply:first-child .contact-info-item .icon-box {
-    width: 180px;
   }
 }
