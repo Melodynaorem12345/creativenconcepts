@@ -86,7 +86,7 @@ export const services = [
   },
   {
     id: 'wardrobe',
-    title: 'Custom Walk-in Wardrobes',
+    title: 'Wardrobes',
     category: 'Residential',
     shortDescription: 'Intelligent storage for a curated lifestyle.',
     description: 'From floor-to-ceiling closets to sophisticated walk-in wardrobes, we maximize every inch of space with modular flexibility and high-end finishes. Integrated lighting and specialized accessories ensure your collection is always organized.',

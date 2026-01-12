@@ -239,7 +239,7 @@ const Header = () => {
                   </div>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/modular-journey" onClick={closeMobileMenu}>Journey</NavLink>
+                  <NavLink className="nav-link" to="/modular-journey" onClick={closeMobileMenu}>Modular Journey</NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/projects" onClick={closeMobileMenu}>Projects</NavLink>

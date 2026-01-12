@@ -266,8 +266,7 @@ const Contact = () => {
                         <option value="">Select a service</option>
                         <option value="Residential Interior">Residential Interior</option>
                         <option value="Commercial Space">Commercial Space</option>
-                        <option value="Modular Kitchen">Modular Kitchen</option>
-                        <option value="Architecture Service">Architecture Service</option>
+                        <option value="Retails Project ">Retails Project</option>
                       </select>
                       {errors.service && (
                         <div id="contact-service-error" className="invalid-feedback d-block small">

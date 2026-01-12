@@ -11,8 +11,7 @@ const FeaturedProjects = () => {
       if (category === 'Commercial') {
         return projects.find(
           (p) =>
-            p.category === 'Commercial' &&
-            p.subCategory?.toLowerCase() === 'hdfc bank'
+            p.category === 'Commercial'
         );
       }
 
@@ -46,7 +45,7 @@ const FeaturedProjects = () => {
                 <img src={project.image} alt={project.title} loading="lazy" />
               </div>
               <div className="project-hero__body">
-                <h5 className="project-hero__title">{project.title}</h5>
+                <h5 className="project-hero__title">{project.category} Project</h5>
                 <p className="project-hero__meta text-uppercase small mb-2">{project.location} • {project.year}</p>
                 <p className="project-hero__copy text-brand-muted mb-3">{project.description}</p>
                 <Link to="/projects" className="project-hero__link">Explore More →</Link>

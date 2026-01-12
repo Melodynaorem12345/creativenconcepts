@@ -323,9 +323,9 @@ const AboutSubPage = () => {
           <div className="container">
             <div className="row text-center gx-4">
               {[
-                { val: 250, suffix: '+', label: 'Projects Completed' },
-                { val: 12, suffix: '', label: 'Design Awards' },
-                { val: 50, suffix: '+', label: 'Expert Architects' }
+                { val: 10000, suffix: '+', label: 'Projects Completed' },
+                { val: 2500, suffix: '', label: 'Design Awards' },
+                { val: 10000, suffix: '+', label: 'Expert Architects' }
               ].map((stat) => (
                 <div className="col-12 col-md-4 mb-3" key={stat.label}>
                   <h3 className="display-6 font-serif text-brand mb-2">

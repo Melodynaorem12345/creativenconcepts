@@ -26,17 +26,17 @@ export const journeySteps = [
   },
   {
     id: 5,
+    title: 'Quotation & Final Approval',
+    description: 'You receive a transparent quotation and finalized drawings. Once approved, we lock specs and schedule production.',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200'
+  },
+  {
+    id: 6,
     title: 'Precision Manufacturing',
     highlight: true,
     badge: 'IMOS Powered',
     description: 'After final approval, production begins using IMOS software to convert designs into machine-ready data. Our German-engineered machinery ensures millimetric precision.',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200'
-  },
-  {
-    id: 6,
-    title: 'Quotation & Final Approval',
-    description: 'You receive a transparent quotation and finalized drawings. Once approved, we lock specs and schedule production.',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200'
   },
   {
     id: 7,
