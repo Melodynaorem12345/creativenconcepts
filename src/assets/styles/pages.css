@@ -805,6 +805,30 @@
   transition: transform 4.8s cubic-bezier(0.19, 1, 0.22, 1),
     filter 4.2s ease;
 }
+.service-gallery {
+  width: 100%;
+}
+.service-gallery__frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.service-gallery__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: none;
+  filter: none;
+}
+.service-details .media .swiper-pagination-bullet {
+  background: #b29563;
+  opacity: 0.55;
+}
+.service-details .media .swiper-pagination-bullet-active {
+  opacity: 1;
+}
 
 .service-details .media::after {
   content: '';

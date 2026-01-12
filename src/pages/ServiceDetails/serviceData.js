@@ -1,497 +1,384 @@
-const baseSections = (items) =>
-  items.map((item, index) => ({
-    ...item,
-    reverse: index % 2 === 1
-  }));
+const imageModules = import.meta.glob(
+  '../../assets/services/**/*.{jpg,jpeg,png,webp,avif,svg}',
+  { eager: true, import: 'default' }
+);
 
-export const servicesData = [
-  {
-    slug: 'modular-kitchen',
-    hero: {
-      title: 'Designed for Everyday Living',
-      subtitle: 'Modular Kitchen',
+const getGalleryImages = (category, serviceSlug) => {
+  const prefix = `/src/assets/services/${category}/${serviceSlug}/`;
+  return Object.entries(imageModules)
+    .filter(([path]) => path.startsWith(prefix))
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, src]) => src);
+};
+
+export const categoryLabels = {
+  kitchen: 'Kitchen Finishes',
+  'living-room': 'Living Room Units',
+  wardrobe: 'Wardrobe Systems'
+};
+
+export const legacyRouteMap = {
+  'modular-kitchen': { category: 'kitchen', serviceSlug: 'acrylic-kitchen' },
+  kitchen: { category: 'kitchen', serviceSlug: 'acrylic-kitchen' },
+  wardrobe: { category: 'wardrobe', serviceSlug: 'sliding-wardrobe' },
+  'living-room': { category: 'living-room', serviceSlug: 'tv-unit' },
+  'tv-console': { category: 'living-room', serviceSlug: 'tv-unit' },
+  'crockery-unit': { category: 'living-room', serviceSlug: 'crockery-unit' },
+  foyer: { category: 'living-room', serviceSlug: 'foyer-unit' },
+  'pooja-room': { category: 'living-room', serviceSlug: 'pooja-unit' },
+  vanity: { category: 'living-room', serviceSlug: 'tv-unit' }
+};
+
+export const servicesData = {
+  kitchen: {
+    'acrylic-kitchen': {
+      title: 'Acrylic Kitchen',
+      shortLabel: 'ACRYLIC KITCHEN',
       description:
-        'Every modular kitchen is crafted as a balance of design, materials, ergonomics and lifestyle needs — tailored specifically for your home.'
+        'Acrylic kitchens are defined by seamless high gloss surfaces that bounce light and visually expand the room. The finish feels smooth and clean, with crisp edges that suit modern planning and handleless profiles. It is chosen for homes that want a bold contemporary look without heavy ornamentation. The surface wipes clean easily and resists day to day wear when paired with quality core boards.',
+      highlights: [
+        'Seamless high gloss look',
+        'Reflective and space enhancing',
+        'Easy to wipe and maintain'
+      ],
+      materials: [
+        'Acrylic sheets',
+        'Engineered boards',
+        'Moisture resistant cores'
+      ],
+      bestFor: ['Modern apartments', 'Contemporary homes'],
+      designTone: 'Sleek, reflective, modern',
+      gallery: getGalleryImages('kitchen', 'acrylic-kitchen')
     },
-    sections: baseSections([
-      {
-        type: 'solid-wood',
-        label: 'SOLID WOOD',
-        title: 'Natura',
-        description: 'Premium hardwood kitchens offering warmth, durability and timeless character.',
-        details: [
-          { label: 'Wood', value: 'Oak, Teak, Ash' },
-          { label: 'Finish', value: 'Natural polish / matte' },
-          { label: 'Best for', value: 'Luxury residences' }
-        ],
-        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400'
-      },
-      {
-        type: 'veneer',
-        label: 'VENEER',
-        title: 'Vento',
-        description: 'Natural veneer surfaces bonded to engineered cores for stability and elegance.',
-        details: [
-          { label: 'Grain', value: 'Natural & book-matched' },
-          { label: 'Finish', value: 'Matt / semi-gloss' },
-          { label: 'Best for', value: 'Contemporary interiors' }
-        ],
-        image: 'https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1400'
-      },
-      {
-        type: 'acrylic',
-        label: 'ACRYLIC',
-        title: 'Aura',
-        description: 'High-gloss reflective surfaces for sleek, modern kitchen designs.',
-        details: [
-          { label: 'Surface', value: 'Scratch-resistant' },
-          { label: 'Maintenance', value: 'Easy clean' },
-          { label: 'Best for', value: 'Modern apartments' }
-        ],
-        image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400'
-      },
-      {
-        type: 'laminate',
-        label: 'LAMINATE',
-        title: 'Linea',
-        description: 'Highly durable laminates with endless textures and colour options.',
-        details: [
-          { label: 'Types', value: 'Matt, textured, high-gloss' },
-          { label: 'Durability', value: 'High' },
-          { label: 'Best for', value: 'Budget-friendly homes' }
-        ],
-        image: 'https://images.unsplash.com/photo-1588854337236-6889d631faa8?w=1400'
-      }
-    ])
+    'duco-kitchen': {
+      title: 'Duco Kitchen',
+      shortLabel: 'DUCO KITCHEN',
+      description:
+        'Duco kitchens use a multi coat painted finish similar to automotive lacquer, delivering an even color field and a gentle sheen. The surface looks refined and uniform, making it ideal for minimal cabinetry, soft curves, and statement islands. It is selected when custom color matching matters and when a studio grade, crafted appearance is desired. With proper care, it stays smooth and elegant for years.',
+      highlights: [
+        'Uniform painted surface',
+        'Custom color matching',
+        'Soft crafted sheen'
+      ],
+      materials: [
+        'Duco paint finish',
+        'MDF or engineered cores',
+        'Protective seal coats'
+      ],
+      bestFor: ['Minimal kitchens', 'Statement islands'],
+      designTone: 'Refined, tailored, studio crafted',
+      gallery: getGalleryImages('kitchen', 'duco-kitchen')
+    },
+    'glass-laminate-kitchen': {
+      title: 'Glass Laminate Kitchen',
+      shortLabel: 'GLASS LAMINATE KITCHEN',
+      description:
+        'Glass laminate kitchens pair the practicality of laminates with a glass like top layer, adding depth and a subtle reflective quality without the fragility of solid glass. The finish feels sleek and cool, with consistent color across large panels. It is a smart choice for contemporary homes that want polish with low maintenance. The surface handles moisture and everyday cleaning with ease while keeping a refined look.',
+      highlights: [
+        'Glass like depth and sheen',
+        'Consistent color across panels',
+        'Low maintenance surface'
+      ],
+      materials: [
+        'Glass laminate sheets',
+        'Engineered boards',
+        'Edge banding system'
+      ],
+      bestFor: ['Contemporary homes', 'Low maintenance kitchens'],
+      designTone: 'Polished, clean, contemporary',
+      gallery: getGalleryImages('kitchen', 'glass-laminate-kitchen')
+    },
+    'lacquered-kitchen': {
+      title: 'Lacquered Kitchen',
+      shortLabel: 'LACQUERED KITCHEN',
+      description:
+        'Lacquered kitchens are built through layered coatings that create rich color depth and a soft, tailored glow. The finish feels silky to the touch and reads as crafted rather than manufactured, making cabinetry appear premium and precise. It suits clients who want a sophisticated palette, smooth edges, and a finish that photographs beautifully. With careful detailing, it offers durable performance and a distinctly upscale presence.',
+      highlights: [
+        'Layered color depth',
+        'Smooth, crafted feel',
+        'Sophisticated palette options'
+      ],
+      materials: [
+        'Lacquer coatings',
+        'MDF or engineered panels',
+        'Sealing and polish layers'
+      ],
+      bestFor: ['Premium interiors', 'Refined color schemes'],
+      designTone: 'Elegant, smooth, quietly luxurious',
+      gallery: getGalleryImages('kitchen', 'lacquered-kitchen')
+    },
+    'laminate-kitchen': {
+      title: 'Laminate Kitchen',
+      shortLabel: 'LAMINATE KITCHEN',
+      description:
+        'Laminate kitchens deliver dependable performance with a wide range of textures, grains, and matte or gloss options. The finish is practical and consistent, making it suitable for busy households that want style without frequent upkeep. It is chosen for its durability, easy cleaning, and budget clarity, while still allowing the studio to compose warm, modern, or classic themes. A strong choice for everyday living with design flexibility.',
+      highlights: [
+        'Durable everyday finish',
+        'Wide texture and color range',
+        'Cost effective and consistent'
+      ],
+      materials: [
+        'High pressure laminates',
+        'Engineered boards',
+        'Moisture resistant adhesives'
+      ],
+      bestFor: ['Family homes', 'High use kitchens'],
+      designTone: 'Practical, versatile, balanced',
+      gallery: getGalleryImages('kitchen', 'laminate-kitchen')
+    },
+    'stone-lam-kitchen': {
+      title: 'Stone Lam Kitchen',
+      shortLabel: 'STONE LAM KITCHEN',
+      description:
+        'Stone laminate kitchens bring the look of natural stone into cabinetry with a lighter, more practical build. The finish feels grounded and tactile, adding architectural weight and a quiet luxury tone. It works beautifully with matte metals and warm woods, and is often chosen for islands or feature walls. Clients select it for its earthy character, subtle movement, and the balance between bold surface presence and maintainability.',
+      highlights: [
+        'Stone inspired texture',
+        'Architectural visual weight',
+        'Balanced luxury and practicality'
+      ],
+      materials: [
+        'Stone laminate panels',
+        'Engineered boards',
+        'Protective surface coats'
+      ],
+      bestFor: ['Feature islands', 'Earth toned interiors'],
+      designTone: 'Grounded, tactile, architectural',
+      gallery: getGalleryImages('kitchen', 'stone-lam-kitchen')
+    },
+    'super-matt-kitchen': {
+      title: 'Super Matt Kitchen',
+      shortLabel: 'SUPER MATT KITCHEN',
+      description:
+        'Super matt kitchens are designed for calm, low glare interiors where color reads soft and velvety. The finish absorbs light rather than reflecting it, creating a quiet, premium mood that pairs well with subtle lighting. It is favored for fingerprint resistance, smooth touch, and a modern, understated palette. This choice suits clients who want elegance without shine and a kitchen that feels composed and contemporary.',
+      highlights: [
+        'Low glare, velvety finish',
+        'Fingerprint resistant surface',
+        'Modern understated palette'
+      ],
+      materials: [
+        'Super matt laminates',
+        'Engineered boards',
+        'Soft touch surface coating'
+      ],
+      bestFor: ['Calm interiors', 'Minimal kitchens'],
+      designTone: 'Soft, muted, contemporary',
+      gallery: getGalleryImages('kitchen', 'super-matt-kitchen')
+    },
+    'veneer-kitchen': {
+      title: 'Veneer Kitchen',
+      shortLabel: 'VENEER KITCHEN',
+      description:
+        'Veneer kitchens showcase real wood grain, bringing warmth and natural variation to the space. The finish feels authentic and tactile, with each panel carrying its own pattern and tone. It is selected for timeless interiors, especially when clients want a refined, architectural look with organic character. Veneer suits both classic and modern designs, and with proper sealing, it ages gracefully while maintaining depth and richness.',
+      highlights: [
+        'Natural wood grain',
+        'Warm and authentic texture',
+        'Timeless architectural appeal'
+      ],
+      materials: [
+        'Natural wood veneer',
+        'Engineered core boards',
+        'Protective seal coats'
+      ],
+      bestFor: ['Timeless homes', 'Warm palettes'],
+      designTone: 'Organic, warm, enduring',
+      gallery: getGalleryImages('kitchen', 'veneer-kitchen')
+    }
   },
-  {
-    slug: 'kitchen',
-    hero: {
-      title: 'Designed for Everyday Living',
-      subtitle: 'Modular Kitchen',
+  'living-room': {
+    'tv-unit': {
+      title: 'TV Unit',
+      shortLabel: 'TV UNIT',
       description:
-        'Functional layouts, premium finishes, and smart storage that elevate the heart of your home.'
+        'TV units are crafted as architectural centerpieces that balance display, storage, and proportion. The composition frames the screen, hides cables, and integrates niches for decor or sound systems. The finish and paneling can shift the mood from minimal to layered luxury, while keeping the wall clean and intentional. Clients choose this unit to create a focal point that feels built in, refined, and calm for daily living.',
+      highlights: [
+        'Balanced media wall composition',
+        'Concealed cable planning',
+        'Integrated display niches'
+      ],
+      materials: [
+        'Engineered panels',
+        'Laminate or veneer cladding',
+        'Metal or wood accents'
+      ],
+      bestFor: ['Living lounges', 'Media rooms'],
+      designTone: 'Composed, architectural, refined',
+      gallery: getGalleryImages('living-room', 'tv-unit')
     },
-    sections: baseSections([
-      {
-        type: 'layout',
-        label: 'LAYOUTS',
-        title: 'Ergo Flow',
-        description: 'Optimized work triangles for effortless cooking and serving.',
-        details: [
-          { label: 'Types', value: 'L, U, Parallel, Island' },
-          { label: 'Focus', value: 'Storage + workflow' },
-          { label: 'Best for', value: 'All home sizes' }
-        ],
-        image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=1400'
-      },
-      {
-        type: 'finishes',
-        label: 'FINISHES',
-        title: 'Signature Surfaces',
-        description: 'Curated textures and tones matched to your lifestyle.',
-        details: [
-          { label: 'Options', value: 'Laminate, veneer, acrylic' },
-          { label: 'Feel', value: 'Matte to high-gloss' },
-          { label: 'Best for', value: 'Custom themes' }
-        ],
-        image: 'https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1400'
-      },
-      {
-        type: 'hardware',
-        label: 'HARDWARE',
-        title: 'Soft Motion',
-        description: 'Silent, smooth hardware for daily convenience.',
-        details: [
-          { label: 'Brands', value: 'Premium fittings' },
-          { label: 'Features', value: 'Soft-close, pull-outs' },
-          { label: 'Best for', value: 'High-use kitchens' }
-        ],
-        image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1400'
-      }
-    ])
+    'crockery-unit': {
+      title: 'Crockery Unit',
+      shortLabel: 'CROCKERY UNIT',
+      description:
+        'Crockery units combine display and storage to elevate dining areas with a curated, gallery like feel. Glass fronts, internal lighting, and refined shelving allow tableware and bar collections to be shown with restraint. The finish can be warm and classic or sleek and contemporary, depending on the space. It is chosen by clients who want elegant organization and a soft sense of hospitality in open living zones.',
+      highlights: [
+        'Display and storage balance',
+        'Glass and lighting integration',
+        'Curated dining presence'
+      ],
+      materials: [
+        'Glass shutters',
+        'Engineered shelving',
+        'LED accent lighting'
+      ],
+      bestFor: ['Dining zones', 'Open living spaces'],
+      designTone: 'Elegant, curated, welcoming',
+      gallery: getGalleryImages('living-room', 'crockery-unit')
+    },
+    'foyer-unit': {
+      title: 'Foyer Unit',
+      shortLabel: 'FOYER UNIT',
+      description:
+        'Foyer units set the first impression with a considered blend of storage, seating, and visual balance. The design typically pairs concealed cabinetry for shoes and essentials with an open niche or mirror that adds depth. Finishes are selected to feel welcoming yet resilient to daily use. This unit is ideal for homes that want an entry moment that feels composed, functional, and quietly premium.',
+      highlights: [
+        'Concealed entry storage',
+        'Seating or bench integration',
+        'Mirror or niche depth'
+      ],
+      materials: [
+        'Engineered cabinetry',
+        'Durable laminate finishes',
+        'Accent mirrors or panels'
+      ],
+      bestFor: ['Urban homes', 'Compact entries'],
+      designTone: 'Welcoming, composed, practical',
+      gallery: getGalleryImages('living-room', 'foyer-unit')
+    },
+    'pooja-unit': {
+      title: 'Pooja Unit',
+      shortLabel: 'POOJA UNIT',
+      description:
+        'Pooja units are designed as serene focal points that respect ritual while feeling light and contemporary. Natural materials, carved accents, and warm backlighting create a calm glow without visual clutter. The finish often leans toward soft woods or stone tones, allowing devotional elements to stand out. Clients choose this unit to create a dedicated corner that feels peaceful, dignified, and integrated with the surrounding architecture.',
+      highlights: [
+        'Serene devotional focal point',
+        'Warm backlit ambience',
+        'Light, uncluttered detailing'
+      ],
+      materials: [
+        'Natural wood or stone tones',
+        'Carved accent panels',
+        'Warm LED lighting'
+      ],
+      bestFor: ['Quiet corners', 'Family homes'],
+      designTone: 'Calm, reverent, integrated',
+      gallery: getGalleryImages('living-room', 'pooja-unit')
+    }
   },
-  {
-    slug: 'wardrobe',
-    hero: {
-      title: 'Storage with Style',
-      subtitle: 'Custom Wardrobes',
+  wardrobe: {
+    'openable-wardrobe': {
+      title: 'Openable Wardrobe',
+      shortLabel: 'OPENABLE WARDROBE',
       description:
-        'Tailor-made wardrobes designed around your lifestyle, with elegant finishes and intelligent storage.'
+        'Openable wardrobes rely on classic hinged shutters that offer full access to the interior and a familiar, grounded feel. The finish can be tailored from matte to veneer, while internal layouts are designed around daily routines. This style suits rooms with adequate clearance and clients who value ease of organization and a traditional opening experience. It delivers a timeless silhouette with plenty of flexibility for storage planning.',
+      highlights: [
+        'Full access hinged shutters',
+        'Flexible internal layouts',
+        'Timeless wardrobe profile'
+      ],
+      materials: [
+        'Engineered boards',
+        'Hinged hardware systems',
+        'Laminate or veneer finish'
+      ],
+      bestFor: ['Spacious bedrooms', 'Classic interiors'],
+      designTone: 'Grounded, familiar, versatile',
+      gallery: getGalleryImages('wardrobe', 'openable-wardrobe')
     },
-    sections: baseSections([
-      {
-        type: 'hinged',
-        label: 'HINGED',
-        title: 'Classic Craft',
-        description: 'Timeless doors with premium hinges and clean detailing.',
-        details: [
-          { label: 'Style', value: 'Classic to modern' },
-          { label: 'Hardware', value: 'Soft-close' },
-          { label: 'Best for', value: 'Spacious rooms' }
-        ],
-        image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=1400'
-      },
-      {
-        type: 'sliding',
-        label: 'SLIDING',
-        title: 'Glide',
-        description: 'Space-saving doors with refined profiles and smooth tracks.',
-        details: [
-          { label: 'System', value: 'Soft glide' },
-          { label: 'Finish', value: 'Mirror / matte' },
-          { label: 'Best for', value: 'Compact rooms' }
-        ],
-        image: 'https://images.unsplash.com/photo-1556912167-f556f1f39faa?w=1400'
-      },
-      {
-        type: 'walk-in',
-        label: 'WALK-IN',
-        title: 'Gallery',
-        description: 'Open plans with spotlighted shelves and curated storage.',
-        details: [
-          { label: 'Storage', value: 'Drawers, hangers, shelves' },
-          { label: 'Lighting', value: 'Integrated LEDs' },
-          { label: 'Best for', value: 'Luxury suites' }
-        ],
-        image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'living-room',
-    hero: {
-      title: 'Spaces that Welcome',
-      subtitle: 'Living Room',
+    'sliding-wardrobe': {
+      title: 'Sliding Wardrobe',
+      shortLabel: 'SLIDING WARDROBE',
       description:
-        'Living rooms that blend comfort, display, and functionality with architectural precision.'
+        'Sliding wardrobes are defined by wide, clean panels that glide smoothly and save floor space. The finish reads modern and streamlined, ideal for compact bedrooms or minimalist interiors. With fewer visible breaks, the wardrobe becomes a calm wall plane that can be customized with mirrors, glass, or muted tones. Clients choose it for space efficiency, refined lines, and a quiet, contemporary presence.',
+      highlights: [
+        'Space saving sliding panels',
+        'Clean wall like appearance',
+        'Customizable panel finishes'
+      ],
+      materials: [
+        'Aluminum track systems',
+        'Glass or laminate panels',
+        'Engineered core boards'
+      ],
+      bestFor: ['Compact rooms', 'Minimal interiors'],
+      designTone: 'Clean, linear, modern',
+      gallery: getGalleryImages('wardrobe', 'sliding-wardrobe')
     },
-    sections: baseSections([
-      {
-        type: 'tv',
-        label: 'TV WALL',
-        title: 'Focus',
-        description: 'Statement panels and concealed storage to anchor your lounge.',
-        details: [
-          { label: 'Finish', value: 'Wood, stone, matte' },
-          { label: 'Storage', value: 'Hidden + open' },
-          { label: 'Best for', value: 'Modern homes' }
-        ],
-        image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1400'
-      },
-      {
-        type: 'display',
-        label: 'DISPLAY',
-        title: 'Curation',
-        description: 'Showcase shelves and lighting that elevate your collections.',
-        details: [
-          { label: 'Shelving', value: 'Glass + wood' },
-          { label: 'Lighting', value: 'Warm ambient' },
-          { label: 'Best for', value: 'Feature walls' }
-        ],
-        image: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1400'
-      },
-      {
-        type: 'seating',
-        label: 'SEATING',
-        title: 'Ease',
-        description: 'Layouts that encourage conversation and flow.',
-        details: [
-          { label: 'Planning', value: 'Zones + circulation' },
-          { label: 'Materials', value: 'Performance fabrics' },
-          { label: 'Best for', value: 'Family spaces' }
-        ],
-        image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'tv-console',
-    hero: {
-      title: 'Clean Entertainment Walls',
-      subtitle: 'TV Console',
+    'walk-in-closet': {
+      title: 'Walk-in Closet',
+      shortLabel: 'WALK-IN CLOSET',
       description:
-        'Architectural consoles that hide clutter and frame your display with elegance.'
+        'Walk in closets create a boutique experience at home, with open shelving, drawers, and hanging zones arranged by category. The finish is typically warm and understated, allowing garments and accessories to feel curated rather than hidden. Lighting, mirrors, and a small vanity can be integrated for daily routines. This option suits clients who want luxury organization, generous storage, and a space that feels personal and composed.',
+      highlights: [
+        'Boutique style organization',
+        'Open display and storage zones',
+        'Integrated lighting and mirrors'
+      ],
+      materials: [
+        'Open shelving systems',
+        'Drawer modules',
+        'Soft close hardware'
+      ],
+      bestFor: ['Large master suites', 'Luxury homes'],
+      designTone: 'Curated, open, personal',
+      gallery: getGalleryImages('wardrobe', 'walk-in-closet')
     },
-    sections: baseSections([
-      {
-        type: 'panel',
-        label: 'PANEL',
-        title: 'Slate',
-        description: 'Layered finishes to create a refined media backdrop.',
-        details: [
-          { label: 'Material', value: 'Wood, stone, laminate' },
-          { label: 'Lighting', value: 'Backlit options' },
-          { label: 'Best for', value: 'Contemporary homes' }
-        ],
-        image: 'https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=1400'
-      },
-      {
-        type: 'storage',
-        label: 'STORAGE',
-        title: 'Conceal',
-        description: 'Drawers and cabinets to keep devices out of sight.',
-        details: [
-          { label: 'Cable', value: 'Hidden routing' },
-          { label: 'Access', value: 'Ventilated bays' },
-          { label: 'Best for', value: 'Smart setups' }
-        ],
-        image: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'crockery-unit',
-    hero: {
-      title: 'Display with Purpose',
-      subtitle: 'Crockery Unit',
+    'pu-wardrobe': {
+      title: 'PU Wardrobe',
+      shortLabel: 'PU WARDROBE',
       description:
-        'Elegant storage that blends display, dining, and bar functionality.'
+        'PU wardrobes feature a painted polyurethane finish that looks seamless and precise, with color depth and a smooth surface. The feel is polished and modern, making it ideal for clean, architectural lines and custom color palettes. It is chosen by clients who want a refined, bespoke look without visible grain. With the right substrate and edge detailing, it stays durable and elegant for everyday use.',
+      highlights: [
+        'Seamless painted surface',
+        'Custom color flexibility',
+        'Refined, modern appearance'
+      ],
+      materials: [
+        'Polyurethane paint finish',
+        'MDF or engineered cores',
+        'Protective seal coats'
+      ],
+      bestFor: ['Custom color schemes', 'Modern bedrooms'],
+      designTone: 'Polished, precise, bespoke',
+      gallery: getGalleryImages('wardrobe', 'pu-wardrobe')
     },
-    sections: baseSections([
-      {
-        type: 'display',
-        label: 'DISPLAY',
-        title: 'Showcase',
-        description: 'Glass fronts and internal lighting for premium presentation.',
-        details: [
-          { label: 'Doors', value: 'Clear or fluted glass' },
-          { label: 'Lighting', value: 'Warm LEDs' },
-          { label: 'Best for', value: 'Dining zones' }
-        ],
-        image: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1400'
-      },
-      {
-        type: 'storage',
-        label: 'STORAGE',
-        title: 'Order',
-        description: 'Balanced closed and open storage for everyday ease.',
-        details: [
-          { label: 'Shelving', value: 'Adjustable' },
-          { label: 'Hardware', value: 'Soft close' },
-          { label: 'Best for', value: 'Compact homes' }
-        ],
-        image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'foyer',
-    hero: {
-      title: 'A Warm First Impression',
-      subtitle: 'Foyer',
+    'profile-wardrobe': {
+      title: 'Profile Wardrobe',
+      shortLabel: 'PROFILE WARDROBE',
       description:
-        'Entry zones designed with smart storage, seating, and layered lighting.'
+        'Profile wardrobes use slim aluminum profiles to frame glass, laminate, or textured inserts, creating crisp geometry and a lightweight appearance. The finish feels contemporary and technical, with fine lines that suit modern bedrooms. It is favored for its visual lightness, especially in rooms that need a refined, airy feel. Clients choose it to combine structure with transparency and a sophisticated, linear rhythm.',
+      highlights: [
+        'Slim profile framing',
+        'Lightweight visual geometry',
+        'Modern linear detailing'
+      ],
+      materials: [
+        'Aluminum profiles',
+        'Glass or laminate inserts',
+        'Precision hardware'
+      ],
+      bestFor: ['Modern bedrooms', 'Minimal spaces'],
+      designTone: 'Light, precise, contemporary',
+      gallery: getGalleryImages('wardrobe', 'profile-wardrobe')
     },
-    sections: baseSections([
-      {
-        type: 'storage',
-        label: 'STORAGE',
-        title: 'Welcome',
-        description: 'Hidden compartments for shoes, bags, and daily essentials.',
-        details: [
-          { label: 'Storage', value: 'Concealed cabinets' },
-          { label: 'Seating', value: 'Integrated bench' },
-          { label: 'Best for', value: 'Urban homes' }
-        ],
-        image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1400'
-      },
-      {
-        type: 'decor',
-        label: 'DECOR',
-        title: 'Signature',
-        description: 'Mirrors, accents, and lighting that set the tone.',
-        details: [
-          { label: 'Lighting', value: 'Warm ambient' },
-          { label: 'Accents', value: 'Stone + wood' },
-          { label: 'Best for', value: 'Feature entries' }
-        ],
-        image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'pooja-room',
-    hero: {
-      title: 'Sacred, Serene Spaces',
-      subtitle: 'Pooja Room',
+    'rattan-wardrobe': {
+      title: 'Rattan Wardrobe',
+      shortLabel: 'RATTAN WARDROBE',
       description:
-        'Peaceful designs that honor tradition while feeling light and modern.'
-    },
-    sections: baseSections([
-      {
-        type: 'material',
-        label: 'MATERIALS',
-        title: 'Calm',
-        description: 'Natural finishes and warm lighting for meditative ambience.',
-        details: [
-          { label: 'Finish', value: 'Stone, wood, brass' },
-          { label: 'Lighting', value: 'Soft glow' },
-          { label: 'Best for', value: 'Quiet corners' }
-        ],
-        image: 'https://images.unsplash.com/photo-1603566233486-77864819d9b0?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'vanity',
-    hero: {
-      title: 'Elevated Daily Rituals',
-      subtitle: 'Vanity',
-      description:
-        'Vanity units crafted with moisture-resistant materials and refined profiles.'
-    },
-    sections: baseSections([
-      {
-        type: 'surface',
-        label: 'SURFACE',
-        title: 'Clean Lines',
-        description: 'Water-safe finishes that stay pristine and polished.',
-        details: [
-          { label: 'Top', value: 'Stone or quartz' },
-          { label: 'Finish', value: 'Matte or satin' },
-          { label: 'Best for', value: 'Daily use' }
-        ],
-        image: 'https://images.unsplash.com/photo-1584622781564-1d9876a13d00?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'commercial-projects',
-    hero: {
-      title: 'Spaces for Performance',
-      subtitle: 'Commercial',
-      description:
-        'Workspaces engineered for flow, productivity, and brand presence.'
-    },
-    sections: baseSections([
-      {
-        type: 'workstations',
-        label: 'WORKSTATIONS',
-        title: 'Focus Zones',
-        description: 'Ergonomic layouts that encourage collaboration and focus.',
-        details: [
-          { label: 'Planning', value: 'Open + agile' },
-          { label: 'Lighting', value: 'Task-focused' },
-          { label: 'Best for', value: 'Teams' }
-        ],
-        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'retail',
-    hero: {
-      title: 'Retail that Resonates',
-      subtitle: 'Retail',
-      description:
-        'Immersive retail environments designed to guide, engage, and convert.'
-    },
-    sections: baseSections([
-      {
-        type: 'display',
-        label: 'DISPLAY',
-        title: 'Merchandise',
-        description: 'Fixtures and lighting tailored to highlight products.',
-        details: [
-          { label: 'Flow', value: 'Guided pathways' },
-          { label: 'Lighting', value: 'Accent focus' },
-          { label: 'Best for', value: 'Brand identity' }
-        ],
-        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'museums',
-    hero: {
-      title: 'Cultural Storytelling',
-      subtitle: 'Museums',
-      description:
-        'Exhibition spaces designed to protect artifacts and elevate narratives.'
-    },
-    sections: baseSections([
-      {
-        type: 'exhibit',
-        label: 'EXHIBIT',
-        title: 'Narrative Flow',
-        description: 'Layouts that guide visitors through immersive stories.',
-        details: [
-          { label: 'Lighting', value: 'Controlled, museum-grade' },
-          { label: 'Materials', value: 'Conservation safe' },
-          { label: 'Best for', value: 'Cultural centers' }
-        ],
-        image: 'https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'hospitals',
-    hero: {
-      title: 'Healing Environments',
-      subtitle: 'Healthcare',
-      description:
-        'Efficient, calming interiors that prioritize hygiene and patient comfort.'
-    },
-    sections: baseSections([
-      {
-        type: 'planning',
-        label: 'PLANNING',
-        title: 'Care Flow',
-        description: 'Functional zoning for staff efficiency and patient ease.',
-        details: [
-          { label: 'Materials', value: 'Antimicrobial surfaces' },
-          { label: 'Lighting', value: 'Balanced + soft' },
-          { label: 'Best for', value: 'Clinics + hospitals' }
-        ],
-        image: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'medical-college',
-    hero: {
-      title: 'Learning with Precision',
-      subtitle: 'Medical College',
-      description:
-        'Academic environments designed for clarity, focus, and modern infrastructure.'
-    },
-    sections: baseSections([
-      {
-        type: 'labs',
-        label: 'LABS',
-        title: 'Practice',
-        description: 'Technical spaces optimized for training and safety.',
-        details: [
-          { label: 'Fit-out', value: 'Specialized equipment' },
-          { label: 'Safety', value: 'Compliant layouts' },
-          { label: 'Best for', value: 'Institutes' }
-        ],
-        image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1400'
-      }
-    ])
-  },
-  {
-    slug: 'institutional',
-    hero: {
-      title: 'Built for Purpose',
-      subtitle: 'Institutional',
-      description:
-        'Durable, easy-to-maintain spaces designed for public use.'
-    },
-    sections: baseSections([
-      {
-        type: 'public',
-        label: 'PUBLIC',
-        title: 'Flow',
-        description: 'Spaces that manage movement and scale with ease.',
-        details: [
-          { label: 'Materials', value: 'Heavy-duty finishes' },
-          { label: 'Layout', value: 'Clear navigation' },
-          { label: 'Best for', value: 'Institutions' }
-        ],
-        image: 'https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba?w=1400'
-      }
-    ])
+        'Rattan wardrobes bring a natural woven texture that softens large surfaces and adds handcrafted warmth. The finish breathes visually, pairing well with wood tones, linen textiles, and relaxed interiors. It is selected for homes that want a tactile, artisanal feel without heavy ornamentation. The woven panels introduce subtle pattern and depth, making the wardrobe feel calm, organic, and distinctly personal.',
+      highlights: [
+        'Natural woven texture',
+        'Soft, breathable appearance',
+        'Artisanal surface detail'
+      ],
+      materials: [
+        'Rattan or cane panels',
+        'Solid wood frames',
+        'Protective clear coats'
+      ],
+      bestFor: ['Warm interiors', 'Relaxed bedrooms'],
+      designTone: 'Organic, tactile, relaxed',
+      gallery: getGalleryImages('wardrobe', 'rattan-wardrobe')
+    }
   }
-];
+};
+
+export const getService = (category, serviceSlug) =>
+  servicesData[category]?.[serviceSlug];

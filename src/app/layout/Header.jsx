@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa';
 import { apiGet } from '../../services/api';
+import { categoryLabels, servicesData } from '../../pages/ServiceDetails/serviceData';
 
 const Header = () => {
   const fallbackSettings = {
@@ -18,31 +19,21 @@ const Header = () => {
   const [settingsError, setSettingsError] = useState(null);
   const location = useLocation();
 
-  const serviceGroups = [
-    {
-      key: 'Kitchen',
-      items: [
-        { label: 'Modular Kitchen', path: 'kitchen' }
-        
-      ]
-    },
-    {
-      key: 'Wardrobe',
-      items: [
-        { label: 'Custom Wardrobes', path: 'wardrobe' }
-      ]
-    },
-    {
-      key: 'Living Room',
-      items: [
-        { label: 'Crockery Unit', path: 'living-room/crockery-unit' },
-        { label: 'Foyer', path: 'living-room/foyer' },
-        { label: 'TV Console', path: 'living-room/tv-console' },
-        { label: 'Pooja Room', path: 'living-room/pooja-room' }
+  const serviceGroups = useMemo(() => {
+    const categoryOrder = ['kitchen', 'living-room', 'wardrobe'];
+    const normalize = (category, items) =>
+      items.map(([slug, service]) => ({
+        label: service.title,
+        path: `services/${category}/${slug}`
+      }));
 
-      ]
-    }
-  ];
+    return categoryOrder
+      .filter((category) => servicesData[category])
+      .map((category) => ({
+        key: categoryLabels[category] || category,
+        items: normalize(category, Object.entries(servicesData[category]))
+      }));
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -225,7 +216,7 @@ const Header = () => {
                               <ul className="services-items list-unstyled mb-0">
                                 {group.items.map((sub) => (
                                   <li key={sub.label}>
-                                    <NavLink className="services-item-link" to={`/services/${sub.path}`} onClick={closeMobileMenu}>
+                                    <NavLink className="services-item-link" to={`/${sub.path}`} onClick={closeMobileMenu}>
                                       {sub.label}
                                     </NavLink>
                                   </li>
