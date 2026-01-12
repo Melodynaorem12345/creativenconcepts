@@ -449,7 +449,7 @@ const AboutSubPage = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.05 }}
-                      className="card h-100 teams-box"
+                      className="card teams-box"
                     >
                       <div className="overflow-hidden">
                         {member.photo ? (

@@ -205,6 +205,10 @@
   border: 1px solid #F1F1F1 !important;
   padding: 10px;
 }
+.teams-box .overflow-hidden{
+  aspect-ratio: 3 / 4; 
+}
+
 .teams-box .cover-image{
   transition: transform 0.35s ease;
 }

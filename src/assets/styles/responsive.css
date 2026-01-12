@@ -361,6 +361,9 @@
     grid-template-columns: 1fr;
     gap: 60px;
   }
+  .teams-box .overflow-hidden {
+    aspect-ratio: 4 / 5;
+  }
 }
 
 @media (max-width: 768px) {
