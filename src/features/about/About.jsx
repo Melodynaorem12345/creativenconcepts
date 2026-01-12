@@ -260,7 +260,7 @@ const AboutSubPage = () => {
     setTeamStatus('loading');
     apiGet('/api/v1/team').then(({ data, error }) => {
       if (data) {
-        setTeamMembers(Array.isArray(data) ? data : []);
+        setTeamMembers(Array.isArray(data.team) ? data.team : []);
         setTeamStatus('success');
         return;
       }
@@ -452,8 +452,8 @@ const AboutSubPage = () => {
                       className="card h-100 teams-box"
                     >
                       <div className="overflow-hidden">
-                        {member.img ? (
-                          <img src={member.img} className="cover-image" alt={member.name} loading="lazy" />
+                        {member.photo ? (
+                          <img src={member.photo} className="cover-image" alt={member.name} loading="lazy" />
                         ) : (
                           <div className="ratio ratio-1x1 bg-brand-mid d-flex align-items-center justify-content-center text-brand-muted">
                             No image
