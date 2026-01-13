@@ -24,6 +24,16 @@
     font-weight: 300;
     margin-bottom: 0px;
 }
+/* Footer link color fix */
+.footer-section li p a{
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-section li p a:hover{
+  color: #c9a46a; /* gold accent */
+  text-decoration: underline;
+}
 .footer-contact .footer-icon {
   color: #906E49;
   font-size: 1rem;

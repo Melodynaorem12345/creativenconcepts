@@ -7,8 +7,8 @@ const Footer = () => {
   const fallbackSettings = {
     brandName: 'CreativeNconcepts',
     address: 'Shed No. 9, Ramaraju Garden, Ganapathipura Kanakapura Road, Bengaluru, Karnataka, 560062',
-    mobile: '+91 98765 43210',
-    email: 'hello@creativenconcepts.com',
+    mobile: '+919844036316',
+    email: 'anandreddy@creativenconcepts.com',
     hours: 'Mon - Sat: 09.00 to 18.00 · Sunday Closed',
     social_links: [
       { platform: 'facebook', url: '#' },
@@ -63,11 +63,19 @@ const Footer = () => {
               </li>
               <li className="d-flex align-items-center gap-3">
                 <FaPhoneAlt className="footer-icon" />
-                <p>{settings.mobile || fallbackSettings.mobile}</p>
+                <p>
+                  <a href={`tel:${settings.mobile || fallbackSettings.mobile}`}>
+                    {settings.mobile || fallbackSettings.mobile}
+                  </a>
+                </p>
               </li>
               <li className="d-flex align-items-center gap-3">
                 <FaEnvelope className="footer-icon" />
-                <p>{settings.email || fallbackSettings.email}</p>
+                <p>
+                  <a href={`mailto:${settings.email || fallbackSettings.email}`}>
+                    {settings.email || fallbackSettings.email}
+                  </a>
+                </p>
               </li>
               <li className="d-flex align-items-center gap-3">
                 <FaClock className="footer-icon" />

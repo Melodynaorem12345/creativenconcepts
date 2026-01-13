@@ -299,7 +299,7 @@ const AboutSubPage = () => {
               <div className="col-lg-6">
                 <h2 className="display-6 font-serif text-brand mb-3">Pioneers of Premium Interiors.</h2>
                 <p className="lead text-brand-muted">
-                  Founded in 2010, CreativeNconcepts was born out of a desire to merge high-end architectural discipline with human-centric interior design. We believe that a space is not just a structure; it's a reflection of the souls that inhabit it.
+                  Founded in 2006, CreativeNconcepts was born out of a desire to merge high-end architectural discipline with human-centric interior design. We believe that a space is not just a structure; it's a reflection of the souls that inhabit it.
                 </p>
                 <p className="text-brand-muted">
                   Our team consists of visionary architects, meticulous project managers, and expert craftsmen dedicated to pushing the boundaries of what's possible in modern living.
@@ -323,9 +323,9 @@ const AboutSubPage = () => {
           <div className="container">
             <div className="row text-center gx-4">
               {[
-                { val: 10000, suffix: '+', label: 'Projects Completed' },
-                { val: 2500, suffix: '', label: 'Design Awards' },
-                { val: 10000, suffix: '+', label: 'Expert Architects' }
+                { val: 2500, suffix: '+', label: 'Projects Completed' },
+                { val: 100, suffix: '+', label: 'Design Awards' },
+                { val: 12, suffix: '+', label: 'Expert Architects' }
               ].map((stat) => (
                 <div className="col-12 col-md-4 mb-3" key={stat.label}>
                   <h3 className="display-6 font-serif text-brand mb-2">

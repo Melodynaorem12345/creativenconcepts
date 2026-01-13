@@ -8,7 +8,7 @@ const Hero = () => {
     {
       image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000',
       eyebrow: 'Bespoke Architectural Excellence',
-      title: 'Creative N concepts',
+      title: 'Creative N Concepts',
       subtitle: 'Designing Spaces. Creating Experiences.'
     },
     {
