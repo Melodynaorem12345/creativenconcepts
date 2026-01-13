@@ -822,6 +822,18 @@
   transform: none;
   filter: none;
 }
+.service-gallery__empty {
+  min-height: 320px;
+  border-radius: 20px;
+  background: #f2efe9;
+  color: #6c6156;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  font-weight: 500;
+}
 .service-details .media .swiper-pagination-bullet {
   background: #b29563;
   opacity: 0.55;

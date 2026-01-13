@@ -113,8 +113,8 @@ const Footer = () => {
               <li><Link className="footer-link" to="/services/living-room/tv-console">TV Console</Link></li>
               <li><Link className="footer-link" to="/services/living-room/pooja-room">Pooja Room</Link></li>
               <li><Link className="footer-link" to="/services/living-room/crockery-unit">Crockery Unit</Link></li>
-              <li><Link className="footer-link" to="/services/commercial-projects">Commercial</Link></li>
-              <li><Link className="footer-link" to="/services/retail">Retail</Link></li>
+              <li><Link className="footer-link" to="/services/kitchen/veneer-kitchen">Veneer Kitchen</Link></li>
+              <li><Link className="footer-link" to="/services/wardrobe/walk-in-closet">Walk-in Closet</Link></li>
             </ul>
           </div>
         </div>

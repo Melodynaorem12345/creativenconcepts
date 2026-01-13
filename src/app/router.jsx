@@ -23,9 +23,6 @@ const AppRouter = () => {
         
         <Route path="services">
           <Route index element={<Navigate to="kitchen/acrylic-kitchen" />} />
-          <Route path="kitchen" element={<Navigate to="kitchen/acrylic-kitchen" replace />} />
-          <Route path="wardrobe" element={<Navigate to="wardrobe/sliding-wardrobe" replace />} />
-          <Route path="living-room" element={<Navigate to="living-room/tv-unit" replace />} />
           <Route path=":category/:serviceSlug" element={<ServiceDetails />} />
           <Route path=":serviceSlug" element={<ServiceDetails />} />
         </Route>

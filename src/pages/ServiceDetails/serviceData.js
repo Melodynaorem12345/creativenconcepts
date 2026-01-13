@@ -1,10 +1,15 @@
 const imageModules = import.meta.glob(
-  '../../assets/services/**/*.{jpg,jpeg,png,webp,avif,svg}',
+  '/src/assets/images/services/**/*.{jpg,jpeg,png,webp,avif,svg}',
   { eager: true, import: 'default' }
 );
 
+const slugAliases = {
+  'veneer-kitchen': 'venner'
+};
+
 const getGalleryImages = (category, serviceSlug) => {
-  const prefix = `/src/assets/services/${category}/${serviceSlug}/`;
+  const resolvedSlug = slugAliases[serviceSlug] || serviceSlug;
+  const prefix = `/src/assets/images/services/${category}/${resolvedSlug}/`;
   return Object.entries(imageModules)
     .filter(([path]) => path.startsWith(prefix))
     .sort(([a], [b]) => a.localeCompare(b))
@@ -12,9 +17,9 @@ const getGalleryImages = (category, serviceSlug) => {
 };
 
 export const categoryLabels = {
-  kitchen: 'Kitchen Finishes',
-  'living-room': 'Living Room Units',
-  wardrobe: 'Wardrobe Systems'
+  kitchen: 'Kitchen',
+  'living-room': 'Living Room',
+  wardrobe: 'Wardrobe'
 };
 
 export const legacyRouteMap = {
@@ -127,8 +132,8 @@ export const servicesData = {
       gallery: getGalleryImages('kitchen', 'laminate-kitchen')
     },
     'stone-lam-kitchen': {
-      title: 'Stone Lam Kitchen',
-      shortLabel: 'STONE LAM KITCHEN',
+      title: 'Stone Laminate Kitchen',
+      shortLabel: 'STONE LAMINATE KITCHEN',
       description:
         'Stone laminate kitchens bring the look of natural stone into cabinetry with a lighter, more practical build. The finish feels grounded and tactile, adding architectural weight and a quiet luxury tone. It works beautifully with matte metals and warm woods, and is often chosen for islands or feature walls. Clients select it for its earthy character, subtle movement, and the balance between bold surface presence and maintainability.',
       highlights: [
@@ -146,8 +151,8 @@ export const servicesData = {
       gallery: getGalleryImages('kitchen', 'stone-lam-kitchen')
     },
     'super-matt-kitchen': {
-      title: 'Super Matt Kitchen',
-      shortLabel: 'SUPER MATT KITCHEN',
+      title: 'Super Matte Kitchen',
+      shortLabel: 'SUPER MATTE KITCHEN',
       description:
         'Super matt kitchens are designed for calm, low glare interiors where color reads soft and velvety. The finish absorbs light rather than reflecting it, creating a quiet, premium mood that pairs well with subtle lighting. It is favored for fingerprint resistance, smooth touch, and a modern, understated palette. This choice suits clients who want elegance without shine and a kitchen that feels composed and contemporary.',
       highlights: [

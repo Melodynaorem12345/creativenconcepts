@@ -150,6 +150,18 @@
   height: 100%;
   object-fit: cover;
 }
+.arch-offer-card__image-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 24px;
+  text-align: center;
+  background: #f4f1ec;
+  color: #6f655a;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
 .arch-offer-card__caption {
   flex-shrink: 0;
   background: #1f1c17;

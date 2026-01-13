@@ -63,7 +63,7 @@ const ServicesPreview = () => {
 
   const featuredServices = navServiceOrder
     .map((id) => services.find((s) => s.id === id))
-    .filter(Boolean)
+    .filter((service) => service && service.bannerImage)
     .slice(0, 6);
 
   return (
@@ -89,7 +89,13 @@ const ServicesPreview = () => {
                 ref={(el) => (cardRefs.current[index] = el)}
               >
                 <div className="arch-offer-card__image">
-                  <img src={service.bannerImage} alt={service.title} loading="lazy" />
+                  {service.bannerImage ? (
+                    <img src={service.bannerImage} alt={service.title} loading="lazy" />
+                  ) : (
+                    <div className="arch-offer-card__image-empty">
+                      No image available
+                    </div>
+                  )}
                 </div>
 
               <div className="arch-offer-card__caption">
