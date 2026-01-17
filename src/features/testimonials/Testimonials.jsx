@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import PageHeader from '@shared/components/PageHeader';
-import contactBg from '@assets/images/banners/contact-bg.jpg';
+import contactBg from '@assets/images/banners/1.jpg';
 import { apiGet } from '../../services/api';
 
 const Testimonials = () => {

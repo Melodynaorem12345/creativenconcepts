@@ -5,7 +5,7 @@ import { apiGet } from '../../services/api';
 
 const Footer = () => {
   const fallbackSettings = {
-    brandName: 'CreativeNconcepts',
+    brandName: 'CreativeNConcepts',
     address: 'Shed No. 9, Ramaraju Garden, Ganapathipura Kanakapura Road, Bengaluru, Karnataka, 560062',
     mobile: '+919844036316',
     email: 'anandreddy@creativenconcepts.com',
@@ -54,7 +54,7 @@ const Footer = () => {
           <div className="col-12 col-lg-5">
             <h3 className="fw-bold font-serif mb-3 text-uppercase">{settings.brandName || fallbackSettings.brandName}</h3>
             <p className="text-light small mb-4 pe-lg-4">
-              CreativeNconcepts brings bespoke interior expertise to your home or office. Our design professionals help you define, craft, and execute spaces that feel effortless and intentional.
+              CreativeNConcepts brings bespoke interior expertise to your home or office. Our design professionals help you define, craft, and execute spaces that feel effortless and intentional.
             </p>
             <ul className="list-unstyled small text-light-emphasis footer-contact">
               <li className="d-flex align-items-start gap-3">
@@ -128,7 +128,7 @@ const Footer = () => {
         </div>
 
         <div className="d-flex justify-content-center align-items-center pt-4 mt-2 footer-bar text-uppercase small text-light-emphasis">
-          <p className="mb-0 footer-subtle">© 2026 CreativeNconcepts. All rights reserved.</p>
+          <p className="mb-0 footer-subtle">© 2026 CreativeNConcepts. All rights reserved.</p>
         </div>
       </div>
     </footer>

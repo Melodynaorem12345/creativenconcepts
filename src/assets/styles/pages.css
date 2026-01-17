@@ -947,3 +947,60 @@
 .service-details-cta {
   padding: 3.5rem 0;
 }
+.about-video-exp {
+  position: relative;
+
+  /* 🔥 full-bleed fix */
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  height: 75vh;
+  min-height: 520px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-video-exp__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-video-exp__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+
+.about-video-exp__card {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  padding: 2.5rem 3.5rem;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.about-video-exp__count {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-family: var(--font-serif);
+  color: var(--brand-500);
+  margin: 0;
+}
+
+.about-video-exp__label {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #666;
+}

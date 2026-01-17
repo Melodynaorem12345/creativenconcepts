@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Lightbox from './components/Lightbox';
 import ProjectCard from './components/ProjectCard';
 import PageHeader from '@shared/components/PageHeader';
-import contactBg from '@assets/images/banners/contact-bg.jpg';
+import contactBg from '@assets/images/banners/1.jpg';
 import { apiGet } from '../../services/api';
 
 const Projects = () => {

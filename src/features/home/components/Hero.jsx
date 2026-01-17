@@ -3,28 +3,41 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
-const Hero = () => {
-  const slides = [
-    {
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000',
-      eyebrow: 'Bespoke Architectural Excellence',
-      title: 'Creative N Concepts',
-      subtitle: 'Designing Spaces. Creating Experiences.'
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=2000',
-      eyebrow: 'Curated Interiors',
-      title: 'Elevated Living Spaces',
-      subtitle: 'Kitchen, wardrobe, and living solutions tailored to you.'
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=2000',
-      eyebrow: 'From Vision To Reality',
-      title: 'Luxury Meets Function',
-      subtitle: 'Crafted details, thoughtful materials, timeless design.'
-    }
-  ];
+const imageModules = import.meta.glob(
+  '/src/assets/images/banners/**/*.{jpg,jpeg,png,webp,avif,svg}',
+  { eager: true, import: 'default' }
+);
+const bannerImages = Object.entries(imageModules)
+  .sort(([a], [b]) => {
+    const getNumber = (path) =>
+      Number(path.match(/(\d+)\.(jpg|jpeg|png|webp|avif|svg)$/i)?.[1] || 0);
 
+    return getNumber(a) - getNumber(b);
+  })
+  .map(([, url]) => url);
+
+const slides = [
+  {
+    image: bannerImages[0],
+    eyebrow: 'Bespoke Architectural Excellence',
+    title: 'Creative N Concepts',
+    subtitle: 'Designing Spaces. Creating Experiences.'
+  },
+  {
+    image: bannerImages[1],
+    eyebrow: 'Curated Interiors',
+    title: 'Elevated Living Spaces',
+    subtitle: 'Kitchen, wardrobe, and living solutions tailored to you.'
+  },
+  {
+    image: bannerImages[2],
+    eyebrow: 'From Vision To Reality',
+    title: 'Luxury Meets Function',
+    subtitle: 'Crafted details, thoughtful materials, timeless design.'
+  }
+];
+
+const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [animKey, setAnimKey] = useState(0);
 

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '@app/layout/Header';
 import Footer from '@app/layout/Footer';
+import FloatingWhatsapp from '@shared/components/FloatingWhatsapp';
 
 const MainLayout = () => {
   const { pathname } = useLocation();
@@ -18,6 +19,7 @@ const MainLayout = () => {
         <Outlet />
       </main>
       <Footer />
+      <FloatingWhatsapp />
     </div>
   );
 };

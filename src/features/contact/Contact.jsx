@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMapPin, FiMail, FiPhone } from 'react-icons/fi';
 import PageHeader from '@shared/components/PageHeader';
-import contactBg from '@assets/images/banners/contact-bg.jpg';
-import contactHero from '@assets/images/banners/contact-us-image.jpg';
+import contactBg from '@assets/images/banners/1.jpg';
+import contactHero from '@assets/images/banners/5.jpg';
 import { apiGet, apiPost } from '../../services/api';
 
 const Contact = () => {

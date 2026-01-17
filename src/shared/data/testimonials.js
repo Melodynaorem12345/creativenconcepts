@@ -4,7 +4,7 @@ export const testimonials = [
     id: 't1',
     name: 'Ananya Sharma',
     role: 'Homeowner',
-    content: 'CreativeNconcepts transformed our apartment into a sanctuary. Their attention to detail in the modular kitchen is unparalleled.',
+    content: 'CreativeNConcepts transformed our apartment into a sanctuary. Their attention to detail in the modular kitchen is unparalleled.',
     avatar: 'https://i.pravatar.cc/150?u=ananya'
   },
   {

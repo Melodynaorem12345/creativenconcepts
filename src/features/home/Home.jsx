@@ -28,7 +28,7 @@ const Home = () => {
                 
                 <h2 className="display-5 fw-semibold font-serif text-brand mb-3">We build narratives through structure and light.</h2>
                 <p className="lead text-brand-muted mb-4">
-                  At CreativeNconcepts, we transcend traditional interior design. Every modular unit, every material choice, and every light fixture serves a greater spatial purpose.
+                  At CreativeNConcepts, we transcend traditional interior design. Every modular unit, every material choice, and every light fixture serves a greater spatial purpose.
                 </p>
                 <Link to="/about/who-we-are" className="btn btn-outline-brand px-4 py-3">
                   The Creative Story

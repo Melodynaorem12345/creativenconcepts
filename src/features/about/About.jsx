@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageHeader from '@shared/components/PageHeader';
-import contactBg from '@assets/images/banners/contact-bg.jpg';
+import contactBg from '@assets/images/banners/1.jpg';
 import { apiGet } from '../../services/api';
 
 const CountUp = ({ end, suffix = '', duration = 1200 }) => {
@@ -293,13 +293,25 @@ const AboutSubPage = () => {
         showSubtitle={false}
         showDescription={false}
       />
+      <section className="about-video-exp">
+        <video
+          className="about-video-exp__video"
+          autoPlay
+          muted
+          loop
+          playsInline
+        >
+          <source src="/videos/who-we-are/intro.mp4" type="video/mp4" />
+        </video>
+      </section>
+
         <section className="section-padding bg-white">
           <div className="container">
             <div className="row align-items-center g-4 mb-5">
               <div className="col-lg-6">
                 <h2 className="display-6 font-serif text-brand mb-3">Pioneers of Premium Interiors.</h2>
                 <p className="lead text-brand-muted">
-                  Founded in 2006, CreativeNconcepts was born out of a desire to merge high-end architectural discipline with human-centric interior design. We believe that a space is not just a structure; it's a reflection of the souls that inhabit it.
+                  Founded in 2006, CreativeNConcepts was born out of a desire to merge high-end architectural discipline with human-centric interior design. We believe that a space is not just a structure; it's a reflection of the souls that inhabit it.
                 </p>
                 <p className="text-brand-muted">
                   Our team consists of visionary architects, meticulous project managers, and expert craftsmen dedicated to pushing the boundaries of what's possible in modern living.
@@ -323,7 +335,7 @@ const AboutSubPage = () => {
           <div className="container">
             <div className="row text-center gx-4">
               {[
-                { val: 2500, suffix: '+', label: 'Projects Completed' },
+                { val: 5000, suffix: '+', label: 'Projects Completed' },
                 { val: 100, suffix: '+', label: 'Design Awards' },
                 { val: 12, suffix: '+', label: 'Expert Architects' }
               ].map((stat) => (

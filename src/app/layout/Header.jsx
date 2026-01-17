@@ -6,7 +6,7 @@ import { categoryLabels, servicesData } from '../../pages/ServiceDetails/service
 
 const Header = () => {
   const fallbackSettings = {
-    brandName: 'CreativeNconcepts'
+    brandName: 'CreativeNConcepts'
   };
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -240,6 +240,10 @@ const Header = () => {
                 </li>
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
+                </li>
+                 <li className="nav-item"><a className="nav-link" href="https://c.aidroid.space/" target="_blank"rel="noopener noreferrer">
+                    Experience Center
+                  </a>
                 </li>
               </ul>
               <div className="navbar-cta mt-3 mt-lg-0 ms-lg-3">
