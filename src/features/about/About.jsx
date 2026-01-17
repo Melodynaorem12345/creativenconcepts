@@ -355,7 +355,7 @@ const AboutSubPage = () => {
             <div className="row g-4 align-items-center">
               <div className="col-12 col-lg-5">
                 <div className="why-choose__header mb-4">
-                  <span className="section-heading d-block mb-3 text-uppercase">Since 1986</span>
+                  <span className="section-heading d-block mb-3 text-uppercase">Since 2006</span>
                   <h2 className="display-5 fw-semibold font-serif text-brand mb-3">We design thoughtful, livable spaces.</h2>
                   <p className="text-brand-muted mb-4">
                     Design, engineering, and delivery teams in one studio to craft spaces that feel intentional and ready for life.

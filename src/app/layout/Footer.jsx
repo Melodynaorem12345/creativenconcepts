@@ -9,7 +9,7 @@ const Footer = () => {
     address: 'Shed No. 9, Ramaraju Garden, Ganapathipura Kanakapura Road, Bengaluru, Karnataka, 560062',
     mobile: '+919844036316',
     email: 'anandreddy@creativenconcepts.com',
-    hours: 'Mon - Sat: 09.00 to 18.00 · Sunday Closed',
+    hours: 'Mon - Sat: 09.00 AM  to 07.00 PM · Sunday Closed',
     social_links: [
       { platform: 'facebook', url: '#' },
       { platform: 'instagram', url: '#' },
