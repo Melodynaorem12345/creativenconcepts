@@ -285,14 +285,6 @@ const AboutSubPage = () => {
 
     return (
       <div>
-        <PageHeader
-        title="Who We Are"
-        image={contactBg}
-        imagePosition="center center"
-        overlay={true}
-        showSubtitle={false}
-        showDescription={false}
-      />
       <section className="about-video-exp">
         <video
           className="about-video-exp__video"
@@ -303,6 +295,7 @@ const AboutSubPage = () => {
         >
           <source src="/videos/who-we-are/intro.mp4" type="video/mp4" />
         </video>
+        <div className="about-video-exp__overlay" aria-hidden="true" />
       </section>
 
         <section className="section-padding bg-white">

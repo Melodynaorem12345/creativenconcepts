@@ -12,6 +12,7 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showAboutMobile, setShowAboutMobile] = useState(false);
   const [showServicesMobile, setShowServicesMobile] = useState(false);
+  const [showMoreMobile, setShowMoreMobile] = useState(false);
   const [expandedServiceKey, setExpandedServiceKey] = useState(null);
   const [isLgUp, setIsLgUp] = useState(typeof window !== 'undefined' ? window.innerWidth >= 1200 : true);
   const [desktopOpen, setDesktopOpen] = useState(null);
@@ -55,6 +56,7 @@ const Header = () => {
     setIsOpen(false);
     setShowAboutMobile(false);
     setShowServicesMobile(false);
+    setShowMoreMobile(false);
     setExpandedServiceKey(null);
     setDesktopOpen(null);
   }, [location]);
@@ -93,6 +95,7 @@ const Header = () => {
     setIsOpen(false);
     setShowAboutMobile(false);
     setShowServicesMobile(false);
+    setShowMoreMobile(false);
     setExpandedServiceKey(null);
     setDesktopOpen(null);
   };
@@ -118,6 +121,14 @@ const Header = () => {
       return;
     }
     setShowServicesMobile((prev) => !prev);
+  };
+
+  const handleMoreToggle = () => {
+    if (isLgUp) {
+      setDesktopOpen('more');
+      return;
+    }
+    setShowMoreMobile((prev) => !prev);
   };
 
   const toggleServiceGroup = (key) => {
@@ -235,15 +246,30 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/projects" onClick={closeMobileMenu}>Projects</NavLink>
                 </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/testimonials" onClick={closeMobileMenu}>Testimonials</NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/contact" onClick={closeMobileMenu}>Contact</NavLink>
-                </li>
                  <li className="nav-item"><a className="nav-link" href="https://c.aidroid.space/" target="_blank"rel="noopener noreferrer">
                     Experience Center
                   </a>
+                </li>
+                <li
+                  className="nav-item dropdown more-dropdown"
+                  onMouseEnter={() => handleDesktopOpen('more')}
+                  onMouseLeave={handleDesktopClose}
+                >
+                  <button
+                    className={`nav-link dropdown-toggle border-0 bg-transparent ${isPathActive('/testimonials') || isPathActive('/contact') ? 'active' : ''}`}
+                    type="button"
+                    onClick={handleMoreToggle}
+                    aria-expanded={showMoreMobile}
+                  >
+                    <span className="d-inline-flex align-items-center gap-1">
+                      More
+                      <FaChevronDown className="nav-caret" />
+                    </span>
+                  </button>
+                  <ul className={`dropdown-menu ${showMoreMobile && !isLgUp ? 'show d-block position-static mt-2' : ''} ${isLgUp && desktopOpen === 'more' ? 'desktop-open show' : ''}`}>
+                    <li><NavLink className="dropdown-item" to="/testimonials" onClick={closeMobileMenu}>Testimonials</NavLink></li>
+                    <li><NavLink className="dropdown-item" to="/contact" onClick={closeMobileMenu}>Contact</NavLink></li>
+                  </ul>
                 </li>
               </ul>
               <div className="navbar-cta mt-3 mt-lg-0 ms-lg-3">

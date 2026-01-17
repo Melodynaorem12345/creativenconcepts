@@ -949,18 +949,14 @@
 }
 .about-video-exp {
   position: relative;
-
-  /* 🔥 full-bleed fix */
   width: 100vw;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-
   height: 75vh;
   min-height: 520px;
   overflow: hidden;
-
   display: flex;
   align-items: center;
   justify-content: center;
