@@ -213,7 +213,7 @@ const ServiceDetails = ({ fixedSlug }) => {
             )}
           </div>
         </div>
-        <section className="section-padding bg-brand-dark text-white text-center service-details-cta">
+        <section className="section-padding bg-brand-darker text-white text-center service-details-cta">
           <div className="container">
             <h2 className="display-5 font-serif mb-4">
               Begin your transformation with {hero.title || resolvedCategory}
@@ -286,7 +286,7 @@ const ServiceDetails = ({ fixedSlug }) => {
         </section>
       </div>
     </div>
-    <section className="section-padding bg-brand-dark text-white text-center service-details-cta">
+    <section className="section-padding bg-brand-darker text-white text-center service-details-cta">
         <div className="container">
           <h2 className="display-5 font-serif mb-4">
             Begin your transformation with {service.title}

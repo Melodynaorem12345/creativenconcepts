@@ -187,7 +187,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: thin;
-    scrollbar-color: var(--brand-500) #f1f1f1;
+    scrollbar-color: var(--accent-500) #f1f1f1;
     opacity: 1;
     transform: translateX(0) translateY(0);
     pointer-events: auto;
@@ -199,7 +199,7 @@
     background: #f1f1f1;
   }
   .navbar-collapse.show::-webkit-scrollbar-thumb {
-    background: var(--brand-500);
+    background: var(--accent-500);
     border-radius: 10px;
   }
   .navbar-collapse.show::-webkit-scrollbar-thumb:hover {
@@ -380,6 +380,12 @@
   }
   .brand-logo {
     max-height: 48px;
+  }
+  .site-logo {
+    height: 40px;
+  }
+  .footer-logo {
+    height: 38px;
   }
   .section-padding {
     padding: 3rem 0;

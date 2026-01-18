@@ -31,11 +31,11 @@
 }
 
 .footer-section li p a:hover{
-  color: #c9a46a; /* gold accent */
+  color: var(--accent-500);
   text-decoration: underline;
 }
 .footer-contact .footer-icon {
-  color: #906E49;
+  color: var(--accent-500);
   font-size: 1rem;
 }
 .footer-quicklinks{
@@ -121,6 +121,18 @@
   letter-spacing: 0.02em;
 }
 
+.site-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.footer-logo {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+}
+
 .navbar-nav .nav-link {
   color: var(--nav-link-color);
   font-weight: 600;
@@ -144,7 +156,7 @@
   padding: 12px 20px;
   color: #ffffff; 
   border-radius: 0px;
-  background: #906E49;
+  background: var(--accent-500);
 }
 
 .navbar-cta .btn:hover,
@@ -155,7 +167,7 @@
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link:focus {
-  color: var(--brand-600);
+  color: var(--accent-600);
 }
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show{
   color: var( --active-hover-color);
@@ -289,7 +301,7 @@
 }
 .about-dropdown .dropdown-menu,.services-categories,.services-items,.more-dropdown .dropdown-menu{
   border-radius: 0;
-  border-bottom:3px solid #d5ac63;
+  border-bottom:3px solid var(--accent-600);
   padding: 0;
   min-width: 200px;
   border-inline: 0px;
@@ -310,10 +322,10 @@
   border-top: 1px solid #e6e6e6;
 }
 .about-dropdown .dropdown-menu li:hover > a,.services-dropdown .services-menu li:hover > .services-category-btn,.services-items li:hover > .services-item-link,.more-dropdown .dropdown-menu li:hover > a{
-    color: #d5ac63;
+    color: var(--accent-600);
     background-color: #252525;
     transition: all 500ms ease;
 }
 .services-dropdown .services-menu li:hover > .services-category-btn .services-category-icon{
-  color: #d5ac63;
+  color: var(--accent-600);
 }

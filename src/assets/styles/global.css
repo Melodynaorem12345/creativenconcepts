@@ -5,19 +5,24 @@ html {
 }
 
 :root {
-  --brand-50: #F1F1F1;
-  --brand-100: #efede8;
-  --brand-200: #dfdcd1;
-  --brand-300: #c5c0af;
-  --brand-400: #a8a08c;
-  --brand-500: #8e836f;
-  --brand-600: #736959;
-  --brand-700: #60584b;
-  --brand-800: #4e483e;
-  --brand-900: #403b34;
-  --brand-950: #221f1b;
+  --brand-50: #f8f6f2;
+  --brand-100: #ffe7ce;
+  --brand-200: #f4e3d4;
+  --brand-300: #c9bdb1;
+  --brand-400: #a99a8b;
+  --brand-500: #4e4e4e;
+  --brand-600: #6e645c;
+  --brand-700: #564f49;
+  --brand-800: #3d3834;
+  --brand-900: #2b2724;
+  --brand-950: #1f1c1a;
+  --accent-500: #f28a1e;
+  --accent-600: #e07a16;
+  --bg-accent: #fff8f2;
+  --accent-brand-950: linear-gradient(  180deg,  #4a2f0f 0%,  #3a240c 100%);
+  --accent-color-500: rgba(255,255,255,0.6);
   --nav-link-color:#121212;
-  --active-hover-color: #906E49;
+  --active-hover-color: var(--accent-500);
   --bs-nav-link-font-size: 14px;
   --header-height: 82px;
 }
@@ -47,7 +52,9 @@ a, button, input, select, textarea {
 .no-scroll {
   overflow: hidden !important;
 }
-
+.text-white-90{
+  color: rgba(255, 255, 255, 0.9);
+}
 .text-brand {
   color: var(--brand-950);
 }
@@ -55,15 +62,25 @@ a, button, input, select, textarea {
 .text-brand-muted {
   color: var(--brand-500);
 }
-
+.text-brand-muted-brand{
+  color: var(--accent-600);
+}
+.text-brand-muted-new{
+  color: var(--accent-color-500);
+}
 .bg-brand-light {
   background-color: var(--brand-50);
+}
+.bg-band-o-light{
+  background-color: var(--bg-accent);
 }
 
 .bg-brand-dark {
   background-color: var(--brand-950);
 }
-
+.bg-brand-darker{
+  background: var(--accent-brand-950);
+}
 .bg-brand-mid {
   background-color: var(--brand-100);
 }

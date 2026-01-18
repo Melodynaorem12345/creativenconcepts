@@ -16,7 +16,7 @@ const JourneyStep = ({ step, index }) => {
             className={`col-lg-6 ${isEven ? '' : 'order-lg-2'}`}
           >
             <div className="d-flex align-items-center gap-3 mb-4">
-              <span className="display-4 font-serif text-brand-muted">0{step.id}</span>
+              <span className="display-4 font-serif text-brand-muted-brand">0{step.id}</span>
               <div className="flex-grow-1 border-top muted-border" />
             </div>
             {step.badge && (

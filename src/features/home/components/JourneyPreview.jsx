@@ -5,7 +5,7 @@ import { journeySteps } from '@shared/data/journey';
 
 const JourneyPreview = () => {
   return (
-    <section className="section-padding bg-brand-dark text-white position-relative overflow-hidden">
+    <section className="section-padding bg-brand-darker text-white position-relative overflow-hidden">
       <div className="container position-relative">
         <div className="row g-5 align-items-center">
           <div className="col-lg-5">
@@ -19,22 +19,22 @@ const JourneyPreview = () => {
                 alt="Manufacturing"
                 className="img-fluid w-100 rounded shadow-soft"
               />
-              <div className="position-absolute top-50 start-50 translate-middle bg-brand-dark bg-opacity-75 text-center p-4">
+              <div className="position-absolute top-50 start-50 translate-middle bg-brand-darker bg-opacity-75 text-center p-4">
                 <h4 className="font-serif fst-italic mb-2">Crafted with precision.</h4>
-                <p className="text-white-50 small mb-0">Every modular component is manufactured in our zero-tolerance German-standard facility.</p>
+                <p className="text-white small mb-0">Every modular component is manufactured in our zero-tolerance German-standard facility.</p>
               </div>
             </div>
           </div>
           <div className="col-lg-7">
-            <span className="section-heading text-light d-block mb-3">Process Engineering</span>
+            <span className="section-heading d-block mb-3">Process Engineering</span>
             <h2 className="display-5 font-serif fw-semibold mb-4">The Modular Journey</h2>
-            <p className="text-white-50 lead mb-4">
+            <p className="text-white-90 lead mb-4">
               We believe that the process is as important as the outcome. Our 11-step modular journey ensures total transparency, unwavering quality, and a stress-free delivery experience.
             </p>
             <div className="d-grid gap-4 mb-4">
               {journeySteps.slice(0, 3).map((step) => (
                 <div key={step.id} className="d-flex gap-3 align-items-start">
-                  <span className="h4 font-serif text-brand-muted mb-0">0{step.id}</span>
+                  <span className="h4 font-serif text-brand-muted-brand mb-0">0{step.id}</span>
                   <div>
                     <h5 className="mb-1 text-white text-uppercase">{step.title}</h5>
                     <p className="small text-white-50 mb-0">{step.description}</p>

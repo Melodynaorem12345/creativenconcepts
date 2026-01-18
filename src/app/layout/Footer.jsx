@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock, FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { apiGet } from '../../services/api';
+import logo from '../../assets/images/logo.png';
 
 const Footer = () => {
   const fallbackSettings = {
@@ -52,7 +53,14 @@ const Footer = () => {
       <div className="container">
         <div className="row g-5 mb-4">
           <div className="col-12 col-lg-5">
-            <h3 className="fw-bold font-serif mb-3 text-uppercase">{settings.brandName || fallbackSettings.brandName}</h3>
+            <div className="d-flex align-items-center gap-3 mb-3">
+              <img
+                src={logo}
+                alt={`${settings.brandName || fallbackSettings.brandName} logo`}
+                className="footer-logo"
+                loading="lazy"
+              />
+            </div>
             <p className="text-light small mb-4 pe-lg-4">
               CreativeNConcepts brings bespoke interior expertise to your home or office. Our design professionals help you define, craft, and execute spaces that feel effortless and intentional.
             </p>

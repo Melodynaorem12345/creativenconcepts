@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa';
 import { apiGet } from '../../services/api';
 import { categoryLabels, servicesData } from '../../pages/ServiceDetails/serviceData';
+import logo from '../../assets/images/logo.png';
 
 const Header = () => {
   const fallbackSettings = {
@@ -140,8 +141,13 @@ const Header = () => {
     <header>
       <nav className={`navbar navbar-expand-xl navbar-light fixed-top bg-white header-nav ${scrolled ? 'shadow-sm' : ''}`}>
         <div className="container d-flex align-items-center">
-          <NavLink className="navbar-brand fw-bold text-brand" to="/">
-            {settings.brandName || fallbackSettings.brandName}
+          <NavLink className="navbar-brand d-flex align-items-center gap-2 text-brand" to="/">
+            <img
+              src={logo}
+              alt={`${settings.brandName || fallbackSettings.brandName} logo`}
+              className="site-logo"
+              loading="lazy"
+            />
           </NavLink>
           <button
             className="navbar-toggler"

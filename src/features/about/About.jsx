@@ -324,7 +324,7 @@ const AboutSubPage = () => {
           </div>
         </section>
 
-        <section className="py-5 bg-brand-light">
+        <section className="py-5 bg-band-o-light">
           <div className="container">
             <div className="row text-center gx-4">
               {[
@@ -336,7 +336,7 @@ const AboutSubPage = () => {
                   <h3 className="display-6 font-serif text-brand mb-2">
                     <CountUp end={stat.val} suffix={stat.suffix} />
                   </h3>
-                  <p className="small text-uppercase text-brand-muted mb-0">{stat.label}</p>
+                  <p className="small text-uppercase text-brand-muted-brand mb-0">{stat.label}</p>
                 </div>
               ))}
             </div>
